@@ -20,6 +20,7 @@ public class Main {
             System.out.println(rs.getString("Username"));
             System.out.println(rs.getString("MDP"));
             System.out.println(rs.getString("Type"));
+
         }
 
     }
