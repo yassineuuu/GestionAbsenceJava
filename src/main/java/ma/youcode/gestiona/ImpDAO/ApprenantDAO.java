@@ -13,6 +13,11 @@ public class ApprenantDAO implements DAO<Apprenant> {
     }
 
     @Override
+    public void add(Apprenant apprenant) {
+
+    }
+
+    @Override
     public List<Apprenant> getAll() {
         return null;
     }

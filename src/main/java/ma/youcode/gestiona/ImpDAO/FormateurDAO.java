@@ -13,6 +13,11 @@ public class FormateurDAO implements DAO<Formateur> {
     }
 
     @Override
+    public void add(Formateur formateur) {
+
+    }
+
+    @Override
     public List<Formateur> getAll() {
         return null;
     }

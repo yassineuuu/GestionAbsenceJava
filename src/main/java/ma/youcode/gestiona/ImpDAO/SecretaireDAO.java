@@ -13,6 +13,11 @@ public class SecretaireDAO implements DAO<Secretaire> {
     }
 
     @Override
+    public void add(Secretaire secretaire) {
+
+    }
+
+    @Override
     public List<Secretaire> getAll() {
         return null;
     }

@@ -13,6 +13,11 @@ public class AdminDAO implements DAO<Admin> {
     }
 
     @Override
+    public void add(Admin admin) {
+
+    }
+
+    @Override
     public List<Admin> getAll() {
         return null;
     }

@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane prefHeight="464.0" prefWidth="638.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ma.youcode.gestiona.AdminController">
+<BorderPane prefHeight="553.0" prefWidth="898.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ma.youcode.gestiona.AdminController">
     <top>
         <VBox alignment="CENTER" prefHeight="64.0" prefWidth="200.0" style="-fx-background-color: #0061ca;" BorderPane.alignment="CENTER">
             <children>
@@ -18,139 +18,199 @@
             </children></VBox>
     </top>
     <center>
-        <VBox alignment="TOP_CENTER" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #058dfe;" BorderPane.alignment="CENTER">
+        <VBox alignment="TOP_RIGHT" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #058dfe;" BorderPane.alignment="CENTER">
             <children>
-                <VBox fx:id="adminCenterBox" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="400.0" prefWidth="700.0">
-                    <children>
-                        <HBox alignment="CENTER" prefHeight="61.0" prefWidth="700.0" style="-fx-background-color: #FFFFFF;">
-                            <children>
-                                <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
-                                    <children>
-                                        <Label text="Admin">
-                                            <font>
-                                                <Font name="Tw Cen MT" size="18.0" />
-                                            </font>
-                                        </Label>
-                                    </children></VBox>
-                                <VBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0">
-                                    <children>
-                                        <Label text="Secrétaire">
-                                            <font>
-                                                <Font name="Tw Cen MT" size="18.0" />
-                                            </font>
-                                        </Label>
-                                    </children>
-                                </VBox>
-                                <VBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0">
-                                    <children>
-                                        <Label text="Formateur">
-                                            <font>
-                                                <Font name="Tw Cen MT" size="18.0" />
-                                            </font>
-                                        </Label>
-                                    </children>
-                                </VBox>
-                                <VBox alignment="CENTER" layoutX="110.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0">
-                                    <children>
-                                        <Label text="Apprenant">
-                                            <font>
-                                                <Font name="Tw Cen MT" size="18.0" />
-                                            </font>
-                                        </Label>
-                                    </children>
-                                </VBox>
-                            </children>
+            <HBox prefHeight="691.0" prefWidth="898.0">
+               <children>
+                  <VBox prefHeight="490.0" prefWidth="239.0" style="-fx-background-color: ffffff;">
+                     <children>
+                        <VBox prefHeight="64.0" prefWidth="219.0">
+                           <children>
+                              <ImageView fitHeight="51.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../img/logoNoir.png" />
+                                 </image>
+                                 <VBox.margin>
+                                    <Insets left="10.0" top="10.0" />
+                                 </VBox.margin>
+                              </ImageView>
+                           </children>
+                        </VBox>
+                        <Separator prefHeight="39.0" prefWidth="219.0">
+                           <opaqueInsets>
+                              <Insets top="20.0" />
+                           </opaqueInsets>
+                        </Separator>
+                        <HBox alignment="CENTER_LEFT" prefHeight="56.0" prefWidth="177.0">
+                           <children>
+                              <ImageView fitHeight="44.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../img/home.png" />
+                                 </image>
+                              </ImageView>
+                              <Label text="Acceuil">
+                                 <font>
+                                    <Font name="Tw Cen MT" size="20.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
+                              </Label>
+                           </children>
+                           <padding>
+                              <Insets left="30.0" />
+                           </padding>
                         </HBox>
-                        <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="344.0" prefWidth="469.0">
-                            <children>
-                                <HBox alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="200.0">
-                                    <children>
-                                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
-                                            <children>
-                                                <ImageView fitHeight="90.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
-                                                    <image>
-                                                        <Image url="@../../../img/add.png" />
-                                                    </image>
-                                                    <VBox.margin>
-                                                        <Insets />
-                                                    </VBox.margin></ImageView>
-                                                <Label text="Ajouter" textFill="WHITE">
-                                                    <font>
-                                                        <Font name="Tw Cen MT" size="16.0" />
-                                                    </font></Label>
-                                            </children>
-                                            <HBox.margin>
-                                                <Insets right="30.0" />
-                                            </HBox.margin>
-                                        </VBox>
-                                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
-                                            <children>
-                                                <ImageView fitHeight="90.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
-                                                    <image>
-                                                        <Image url="@../../../img/edit.png" />
-                                                    </image>
-                                                    <VBox.margin>
-                                                        <Insets />
-                                                    </VBox.margin></ImageView>
-                                                <Label text="Modifier" textFill="WHITE">
-                                                    <font>
-                                                        <Font name="Tw Cen MT" size="16.0" />
-                                                    </font></Label>
-                                            </children>
-                                            <HBox.margin>
-                                                <Insets left="30.0" />
-                                            </HBox.margin>
-                                        </VBox>
-                                    </children>
-                                    <VBox.margin>
-                                        <Insets bottom="30.0" />
-                                    </VBox.margin>
-                                </HBox>
-                                <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="300.0">
-                                    <children>
-                                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
-                                            <children>
-                                                <ImageView fitHeight="90.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
-                                                    <image>
-                                                        <Image url="@../../../img/search-property.png" />
-                                                    </image>
-                                                    <VBox.margin>
-                                                        <Insets />
-                                                    </VBox.margin></ImageView>
-                                                <Label text="Rechercher" textFill="WHITE">
-                                                    <font>
-                                                        <Font name="Tw Cen MT" size="16.0" />
-                                                    </font>
-                                                </Label>
-                                            </children>
-                                            <HBox.margin>
-                                                <Insets right="30.0" />
-                                            </HBox.margin>
-                                        </VBox>
-                                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
-                                            <children>
-                                                <ImageView fitHeight="90.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
-                                                    <image>
-                                                        <Image url="@../../../img/delete-forever.png" />
-                                                    </image>
-                                                    <VBox.margin>
-                                                        <Insets />
-                                                    </VBox.margin></ImageView>
-                                                <Label text="Supprimer" textFill="WHITE">
-                                                    <font>
-                                                        <Font name="Tw Cen MT" size="16.0" />
-                                                    </font>
-                                                </Label>
-                                            </children>
-                                            <HBox.margin>
-                                                <Insets left="30.0" />
-                                            </HBox.margin>
-                                        </VBox>
-                                    </children>
-                                </HBox>
-                            </children></VBox>
-                    </children>
-                </VBox>
+                        <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="113.0" prefHeight="56.0" prefWidth="177.0">
+                           <children>
+                              <ImageView fitHeight="44.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../img/home.png" />
+                                 </image>
+                              </ImageView>
+                              <Label text="Acceuil">
+                                 <font>
+                                    <Font name="Tw Cen MT" size="20.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
+                              </Label>
+                           </children>
+                           <padding>
+                              <Insets left="30.0" />
+                           </padding>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="169.0" prefHeight="56.0" prefWidth="177.0">
+                           <children>
+                              <ImageView fitHeight="44.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../img/home.png" />
+                                 </image>
+                              </ImageView>
+                              <Label text="Acceuil">
+                                 <font>
+                                    <Font name="Tw Cen MT" size="20.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
+                              </Label>
+                           </children>
+                           <padding>
+                              <Insets left="30.0" />
+                           </padding>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="169.0" prefHeight="56.0" prefWidth="177.0">
+                           <children>
+                              <ImageView fitHeight="44.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../img/home.png" />
+                                 </image>
+                              </ImageView>
+                              <Label text="Acceuil">
+                                 <font>
+                                    <Font name="Tw Cen MT" size="20.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
+                              </Label>
+                           </children>
+                           <padding>
+                              <Insets left="30.0" />
+                           </padding>
+                        </HBox>
+                     </children>
+                  </VBox>
+                      <VBox fx:id="adminCenterBox" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="400.0" prefWidth="700.0">
+                          <children>
+                              <HBox alignment="CENTER" prefHeight="61.0" prefWidth="700.0" style="-fx-background-color: #FFFFFF;">
+                                  <children>
+                                      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                                          <children>
+                                              <Label text="Admin">
+                                                  <font>
+                                                      <Font name="Tw Cen MT" size="18.0" />
+                                                  </font>
+                                              </Label>
+                                          </children>
+                              </VBox>
+                                      <VBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0">
+                                          <children>
+                                              <Label text="Secrétaire">
+                                                  <font>
+                                                      <Font name="Tw Cen MT" size="18.0" />
+                                                  </font>
+                                              </Label>
+                                          </children>
+                                      </VBox>
+                                      <VBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0">
+                                          <children>
+                                              <Label text="Formateur">
+                                                  <font>
+                                                      <Font name="Tw Cen MT" size="18.0" />
+                                                  </font>
+                                              </Label>
+                                          </children>
+                                      </VBox>
+                                      <VBox alignment="CENTER" layoutX="110.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0">
+                                          <children>
+                                              <Label text="Apprenant">
+                                                  <font>
+                                                      <Font name="Tw Cen MT" size="18.0" />
+                                                  </font>
+                                              </Label>
+                                          </children>
+                                      </VBox>
+                                  </children>
+                              </HBox>
+                              <VBox fx:id="buttonsVBox" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="341.0" prefWidth="461.0">
+                                  <children>
+                                      <HBox fx:id="HBox1" alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="200.0">
+                                          <VBox.margin>
+                                              <Insets bottom="30.0" />
+                                          </VBox.margin>
+                                 <children>
+                                    <Button fx:id="adminButton" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#adminCrud" prefHeight="100.0" prefWidth="250.0" style="-fx-background-color: #0073e0;" text="Admin" textFill="WHITE">
+                                       <HBox.margin>
+                                          <Insets right="20.0" />
+                                       </HBox.margin>
+                                       <font>
+                                          <Font size="24.0" />
+                                       </font>
+                                    </Button>
+                                    <Button minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="100.0" prefWidth="150.0" style="-fx-background-color: #fff204;" text="Secrétaire" textFill="WHITE">
+                                       <font>
+                                          <Font name="Tw Cen MT Bold" size="24.0" />
+                                       </font>
+                                    </Button>
+                                 </children>
+                                      </HBox>
+                              <HBox fx:id="HBox2" alignment="CENTER" layoutX="10.0" layoutY="117.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <Button minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="100.0" prefWidth="150.0" style="-fx-background-color: ee1551;" text="Formateur" textFill="WHITE">
+                                       <HBox.margin>
+                                          <Insets right="20.0" />
+                                       </HBox.margin>
+                                       <font>
+                                          <Font name="Tw Cen MT" size="24.0" />
+                                       </font>
+                                    </Button>
+                                    <Button minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="100.0" prefWidth="250.0" style="-fx-background-color: ffffff;" text="Apprenants" textFill="#058dfe">
+                                       <font>
+                                          <Font name="Tw Cen MT" size="24.0" />
+                                       </font>
+                                    </Button>
+                                 </children>
+                              </HBox>
+                                  </children>
+                        </VBox>
+                          </children>
+                      </VBox>
+               </children>
+            </HBox>
+            <VBox prefHeight="200.0" prefWidth="100.0" />
             </children></VBox>
     </center>
 </BorderPane>
