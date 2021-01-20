@@ -13,7 +13,8 @@ public class Utilisateur {
 
 //    Constructeur
 
-    public Utilisateur(String userName,String nom, String prenom, String pwd, String type) {
+    public Utilisateur(int id, String userName,String nom, String prenom, String pwd, String type) {
+        this.id = id;
         this.userName = userName;
         this.nom = nom;
         this.prenom = prenom;

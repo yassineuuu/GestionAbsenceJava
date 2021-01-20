@@ -16,8 +16,30 @@ import java.util.*;
 
 public class UtilisateurDAO implements DAO<Utilisateur> {
     @Override
-    public Optional<Utilisateur> get(int id) {
-        return Optional.empty();
+    public ObservableList<Utilisateur> get(String Username) {
+        Connection conn = null;
+        ObservableList<Utilisateur> utilisateursList = FXCollections.observableArrayList();
+
+        try {
+            conn = ConnectionFactory.getConnection();
+            PreparedStatement preparedStatement = conn.prepareStatement("SELECT * FROM `utilisateurs` WHERE Username ='" + Username +"'");
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()){
+                Utilisateur utilisateur = new Utilisateur(resultSet.getInt("id"), resultSet.getString("Username"), resultSet.getString("Nom"),
+                        resultSet.getString("Prenom"), resultSet.getString("MDP"), resultSet.getString("Role"));
+                utilisateursList.add(utilisateur);
+//                       System.out.println(utilisateur.getUserName());
+
+            }
+            resultSet.close();
+            preparedStatement.close();
+            conn.close();
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        }
+
+        return utilisateursList;
     }
 
     @Override
@@ -53,9 +75,10 @@ public class UtilisateurDAO implements DAO<Utilisateur> {
 
                try{
                    while (resultSet.next()){
-                       Utilisateur utilisateur = new Utilisateur(resultSet.getString("Username"), resultSet.getString("Nom"),resultSet.getString("Prenom"), resultSet.getString("MDP"), resultSet.getString("Role"));
+                       Utilisateur utilisateur = new Utilisateur(resultSet.getInt("id"), resultSet.getString("Username"), resultSet.getString("Nom"),
+                               resultSet.getString("Prenom"), resultSet.getString("MDP"), resultSet.getString("Role"));
                        utilisateursList.add(utilisateur);
-                       System.out.println(utilisateur.getUserName());
+//                       System.out.println(utilisateur.getUserName());
 
                    }
                    resultSet.close();
@@ -64,7 +87,6 @@ public class UtilisateurDAO implements DAO<Utilisateur> {
                }catch (SQLException e){
                         e.printStackTrace();
                }
-
 
 
             return utilisateursList;
@@ -79,10 +101,41 @@ public class UtilisateurDAO implements DAO<Utilisateur> {
     @Override
     public void update(Utilisateur utilisateur, String[] params) {
 
+        Connection conn = null;
+        try {
+            conn = ConnectionFactory.getConnection();
+            PreparedStatement preparedStatement = conn.prepareStatement("UPDATE `utilisateurs` SET `Username`=?,`Nom`=?,`Prenom`=?,`MDP`=?,`Role`=? WHERE id="+utilisateur.getId());
+
+            preparedStatement.setString(1,params[0]);
+            preparedStatement.setString(2,params[1]);
+            preparedStatement.setString(3,params[2]);
+            preparedStatement.setString(4,params[3]);
+            preparedStatement.setString(5,params[4]);
+
+            preparedStatement.executeUpdate();
+
+            preparedStatement.close();
+            conn.close();
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        }
+
+
+
     }
 
     @Override
-    public void delete(Utilisateur utilisateur) {
+    public void delete(Utilisateur utilisateur) throws SQLException {
+        Connection conn = ConnectionFactory.getConnection();
+        PreparedStatement preparedStatement = conn.prepareStatement("DELETE FROM utilisateurs WHERE id =" + utilisateur.getId());
+        try {
+            preparedStatement.executeUpdate();
 
+            preparedStatement.close();
+            conn.close();
+
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
     }
 }

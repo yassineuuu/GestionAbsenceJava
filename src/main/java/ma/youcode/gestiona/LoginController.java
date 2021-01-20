@@ -40,13 +40,7 @@ public class LoginController {
         preparedStatement.setString(2, mdp);
 
         ResultSet resultSet = preparedStatement.executeQuery();
-//
-//        String role = resultSet.getString("Username");
-//
-//        System.out.println(role);
-//
-//        System.out.println(username);
-//        System.out.println(mdp);
+
         if (resultSet.next()){
             switch (resultSet.getString("Role")){
                 case "Admin":

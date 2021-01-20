@@ -18,9 +18,14 @@ public class Main extends Application {
 
     @Override
     public void start(Stage stage) throws IOException, SQLException {
-        scene = new Scene(loadFXML("Admin"), 768, 500);
+        scene = new Scene(loadFXML("admin"), 920, 500);
+        stage.setTitle("Gestion d'absence YouCode");
         stage.setScene(scene);
         stage.show();
+
+        Image icon = new Image(getClass().getResource("/img/icon.png").toString());
+        stage.getIcons().add(icon);
+        stage.setResizable(false);
 
 
         ConnectionFactory.getConnection();
