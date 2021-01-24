@@ -1,5 +1,7 @@
 package ma.youcode.gestiona.ImpDAO;
 
+import javafx.beans.Observable;
+import javafx.collections.ObservableList;
 import ma.youcode.gestiona.DAO.DAO;
 import ma.youcode.gestiona.Modeles.Admin;
 
@@ -13,7 +15,7 @@ public class AdminDAO implements DAO<Admin> {
     }
 
     @Override
-    public List<Admin> getAll() {
+    public ObservableList<Admin> getAll() {
         return null;
     }
 

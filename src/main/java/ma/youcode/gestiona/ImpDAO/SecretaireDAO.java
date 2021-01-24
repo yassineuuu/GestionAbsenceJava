@@ -1,5 +1,6 @@
 package ma.youcode.gestiona.ImpDAO;
 
+import javafx.collections.ObservableList;
 import ma.youcode.gestiona.DAO.DAO;
 import ma.youcode.gestiona.Modeles.Secretaire;
 
@@ -13,7 +14,7 @@ public class SecretaireDAO implements DAO<Secretaire> {
     }
 
     @Override
-    public List<Secretaire> getAll() {
+    public ObservableList<Secretaire> getAll() {
         return null;
     }
 
