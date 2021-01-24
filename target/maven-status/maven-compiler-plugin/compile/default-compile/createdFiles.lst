@@ -1,4 +1,10 @@
-ma\youcode\gestiona\App.class
-ma\youcode\gestiona\SecondaryController.class
-ma\youcode\gestiona\PrimaryController.class
+ma\youcode\gestiona\ImpDAO\FormateurDAO.class
+ma\youcode\gestiona\ImpDAO\ApprenantDAO.class
+ma\youcode\gestiona\ImpDAO\AdminDAO.class
+ma\youcode\gestiona\ImpDAO\UtilisateurDAO.class
 module-info.class
+ma\youcode\gestiona\Modeles\Apprenant.class
+ma\youcode\gestiona\Modeles\Formateur.class
+ma\youcode\gestiona\ImpDAO\SecretaireDAO.class
+ma\youcode\gestiona\Modeles\Admin.class
+ma\youcode\gestiona\Modeles\Secretaire.class
