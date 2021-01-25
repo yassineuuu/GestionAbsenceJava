@@ -8,9 +8,9 @@ public class ConnectionFactory {
 
 //    Variables
     private String driverClassName = "com.mysql.jdbc.Driver";
-    private static String url = "jdbc:mysql://localhost:3306/gestionabsenceyoucode?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+    private static String url = "jdbc:mysql://localhost:3306/absence?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
     private static String dbUser = "root";
-    private static String dbPwd = "1995";
+    private static String dbPwd = "";
 
     private static ConnectionFactory connectionFactory;
 

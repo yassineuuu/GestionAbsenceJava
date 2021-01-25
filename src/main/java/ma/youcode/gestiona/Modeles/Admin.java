@@ -3,10 +3,11 @@ package ma.youcode.gestiona.Modeles;
 public class Admin extends Utilisateur{
 
 
-//    Constructeur
-    public Admin(String userName, String pwd, String type) {
-        super(userName, pwd, type);
+    public Admin(int id, String userName, String nom, String prenom, String pwd, String role) {
+        super(id, userName, nom, prenom, pwd, role);
     }
+
+
 
 
 }
