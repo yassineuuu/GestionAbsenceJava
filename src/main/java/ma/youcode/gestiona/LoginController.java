@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.prefs.Preferences;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -13,6 +14,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import ma.youcode.gestiona.Connection.ConnectionFactory;
+
 
 public class LoginController {
 
@@ -58,6 +60,10 @@ public class LoginController {
                 default:
                     loginBox.getChildren().add(new Label("Role n'exist pas"));
             }
+            Preferences preferences = Preferences.userNodeForPackage(getClass());
+            preferences.put("id", String.valueOf(resultSet.getInt("id")));
+            System.out.println(preferences.get("id", "root"));
+
             conn.close();
         }else {
             loginBox.getChildren().add(new Label());

@@ -27,6 +27,16 @@
             <artifactId>javafx-fxml</artifactId>
             <version>13</version>
         </dependency>
+
+<!--        &lt;!&ndash; https://mvnrepository.com/artifact/clojure-interop/java.util.prefs &ndash;&gt;-->
+<!--        <dependency>-->
+<!--            <groupId>clojure-interop</groupId>-->
+<!--            <artifactId>java.util.prefs</artifactId>-->
+<!--            <version>1.0.5</version>-->
+<!--        </dependency>-->
+
+
+
     </dependencies>
 
     <build>

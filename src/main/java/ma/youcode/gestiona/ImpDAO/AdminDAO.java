@@ -23,7 +23,7 @@ public class AdminDAO implements DAO<Admin> {
 
         try {
             conn = ConnectionFactory.getConnection();
-            PreparedStatement preparedStatement = conn.prepareStatement("SELECT * FROM `utilisateurs` WHERE Role = 'Admin' && Username ='" + Username +"'");
+            PreparedStatement preparedStatement = conn.prepareStatement("SELECT * FROM `utilisateurs` WHERE Username ='" + Username +"'");
             ResultSet resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()){
@@ -45,15 +45,59 @@ public class AdminDAO implements DAO<Admin> {
 
     @Override
     public void add(Admin admin) {
+        try {
+            Connection conn = ConnectionFactory.getConnection();
+            PreparedStatement preparedStatement = conn.prepareStatement("INSERT INTO `utilisateurs`(`Username`, `Nom`, `Prenom`, `MDP`, `Role`) VALUES (?,?,?,?,?)");
+            preparedStatement.setString(1,admin.getUserName());
+            preparedStatement.setString(2,admin.getNom());
+            preparedStatement.setString(3,admin.getPrenom());
+            preparedStatement.setString(4,admin.getPwd());
+            preparedStatement.setString(5,admin.getRole());
 
+            int resultSet = preparedStatement.executeUpdate();
+
+            preparedStatement.close();
+            conn.close();
+
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        }
 
     }
 
     @Override
     public ObservableList<Admin> getAll() throws SQLException {
+        Connection conn = ConnectionFactory.getConnection();
+        PreparedStatement preparedStatement = conn.prepareStatement("SELECT * FROM `utilisateurs`");
+        ResultSet resultSet = preparedStatement.executeQuery();
+
+        ObservableList<Admin> utilisateursList = FXCollections.observableArrayList();
+
+        try{
+            while (resultSet.next()){
+                Utilisateur utilisateur = new Admin(resultSet.getInt("id"), resultSet.getString("Username"), resultSet.getString("Nom"),
+                        resultSet.getString("Prenom"), resultSet.getString("MDP"), resultSet.getString("Role"));
+                utilisateursList.add((Admin) utilisateur);
+//                       System.out.println(utilisateur.getUserName());
+
+            }
+            resultSet.close();
+            preparedStatement.close();
+            conn.close();
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+
+
+        return utilisateursList;
+    }
+
+
+    public ObservableList<Admin> getAll(String role) throws SQLException {
+
 
         Connection conn = ConnectionFactory.getConnection();
-        PreparedStatement preparedStatement = conn.prepareStatement("SELECT * FROM `utilisateurs`WHERE Role = 'Admin'");
+        PreparedStatement preparedStatement = conn.prepareStatement("SELECT * FROM `utilisateurs`WHERE Role = '"+role+"'");
         ResultSet resultSet = preparedStatement.executeQuery();
 
         ObservableList<Admin> utilisateursList = FXCollections.observableArrayList();
@@ -88,7 +132,7 @@ public class AdminDAO implements DAO<Admin> {
         Connection conn = null;
         try {
             conn = ConnectionFactory.getConnection();
-            PreparedStatement preparedStatement = conn.prepareStatement("UPDATE `utilisateurs` SET `Username`=?,`Nom`=?,`Prenom`=?,`MDP`=?,`Role`=? WHERE Role = 'Admin' && id="+admin.getId());
+            PreparedStatement preparedStatement = conn.prepareStatement("UPDATE `utilisateurs` SET `Username`=?,`Nom`=?,`Prenom`=?,`MDP`=?,`Role`=? WHERE id="+admin.getId());
 
             preparedStatement.setString(1,params[0]);
             preparedStatement.setString(2,params[1]);
@@ -108,7 +152,7 @@ public class AdminDAO implements DAO<Admin> {
     @Override
     public void delete(Admin admin) throws SQLException {
         Connection conn = ConnectionFactory.getConnection();
-        PreparedStatement preparedStatement = conn.prepareStatement("DELETE FROM utilisateurs WHERE Role = 'Admin' && id =" + admin.getId());
+        PreparedStatement preparedStatement = conn.prepareStatement("DELETE FROM utilisateurs WHERE id =" + admin.getId());
         try {
             preparedStatement.executeUpdate();
 

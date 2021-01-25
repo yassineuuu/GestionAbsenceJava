@@ -2,6 +2,9 @@ package ma.youcode.gestiona.Modeles;
 
 public class Apprenant extends Utilisateur{
 
+    private int idApprenant;
+    private String promotion;
+    private String classe;
 
 //    Constructeur
 

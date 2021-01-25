@@ -1,5 +1,8 @@
 package ma.youcode.gestiona.DAO;
 
+import javafx.collections.ObservableList;
+import ma.youcode.gestiona.Modeles.Admin;
+
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;

@@ -16,7 +16,12 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import ma.youcode.gestiona.Connection.ConnectionFactory;
 import ma.youcode.gestiona.DAO.DAO;
+import ma.youcode.gestiona.ImpDAO.AdminDAO;
+import ma.youcode.gestiona.ImpDAO.FormateurDAO;
+import ma.youcode.gestiona.ImpDAO.SecretaireDAO;
 import ma.youcode.gestiona.ImpDAO.UtilisateurDAO;
+import ma.youcode.gestiona.Modeles.Admin;
+import ma.youcode.gestiona.Modeles.Formateur;
 import ma.youcode.gestiona.Modeles.Utilisateur;
 
 import java.io.IOException;
@@ -27,7 +32,11 @@ import java.sql.SQLException;
 
 public class AdminController {
 
-    UtilisateurDAO utilisateurDAO;
+    AdminDAO utilisateurDAO;
+    AdminDAO adminDAO;
+    SecretaireDAO secretaireDAO;
+    FormateurDAO formateurDAO;
+
     VBox modifVBox;
 
 
@@ -36,7 +45,15 @@ public class AdminController {
     @FXML
     private HBox HBox1;
     @FXML
+    private HBox acceuilBtn;
+    @FXML
+    private HBox tablesBtn;
+    @FXML
     private HBox HBox2;
+    @FXML
+    private HBox navbar;
+    @FXML
+    private VBox adminCenterBox;
     @FXML
     private VBox usersVBox;
     @FXML
@@ -54,6 +71,20 @@ public class AdminController {
     @FXML
     private void adminCrud() throws SQLException {
 
+        acceuilBtn.setBackground(new Background(new BackgroundFill(Color.rgb(255, 255, 255), CornerRadii.EMPTY,Insets.EMPTY)));
+        tablesBtn.setBackground(new Background(new BackgroundFill(Color.rgb(244, 245, 219), CornerRadii.EMPTY,Insets.EMPTY)));
+        acceuilBtn.setOnMouseClicked(e->{
+            try {
+                Main.setRoot("admin");
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            }
+        });
+
+
+        adminCenterBox.setBackground(new Background(new BackgroundFill(Color.rgb(5, 141, 254), CornerRadii.EMPTY,Insets.EMPTY)));
+        buttonsVBox.setBackground(new Background(new BackgroundFill(Color.rgb(5, 141, 254), CornerRadii.EMPTY,Insets.EMPTY)));
+        navbar.setPadding(new Insets(25,0,25,0));
         HBox1.getChildren().clear();
         HBox2.getChildren().clear();
         usersVBox.setBackground(new Background(new BackgroundFill(Color.rgb(244, 245, 219), CornerRadii.EMPTY,Insets.EMPTY)));
@@ -61,26 +92,12 @@ public class AdminController {
         Label label0 = new Label("Utilisateurs");
         label0.setFont(Font.font("Tw Cen MT",18));
         usersVBox.getChildren().add(label0);
-        usersVBox.setOnMouseClicked(e6->{
-            navSecretaire.setBackground(new Background(new BackgroundFill(Color.rgb(255, 255, 255), CornerRadii.EMPTY,Insets.EMPTY)));
-            navFormateur.setBackground(new Background(new BackgroundFill(Color.rgb(255, 255, 255), CornerRadii.EMPTY,Insets.EMPTY)));
-            navApprenant.setBackground(new Background(new BackgroundFill(Color.rgb(255, 255, 255), CornerRadii.EMPTY,Insets.EMPTY)));
-            navAdmin.setBackground(new Background(new BackgroundFill(Color.rgb(255, 255, 255), CornerRadii.EMPTY,Insets.EMPTY)));
-            usersVBox.setBackground(new Background(new BackgroundFill(Color.rgb(244, 245, 219), CornerRadii.EMPTY,Insets.EMPTY)));
 
-        });
 
         Label label1 = new Label("Admin");
         label1.setFont(Font.font("Tw Cen MT",18));
         navAdmin.getChildren().add(label1);
-        navAdmin.setOnMouseClicked(e6->{
-            navSecretaire.setBackground(new Background(new BackgroundFill(Color.rgb(255, 255, 255), CornerRadii.EMPTY,Insets.EMPTY)));
-            navFormateur.setBackground(new Background(new BackgroundFill(Color.rgb(255, 255, 255), CornerRadii.EMPTY,Insets.EMPTY)));
-            navApprenant.setBackground(new Background(new BackgroundFill(Color.rgb(255, 255, 255), CornerRadii.EMPTY,Insets.EMPTY)));
-            usersVBox.setBackground(new Background(new BackgroundFill(Color.rgb(255, 255, 255), CornerRadii.EMPTY,Insets.EMPTY)));
-            navAdmin.setBackground(new Background(new BackgroundFill(Color.rgb(244, 245, 219), CornerRadii.EMPTY,Insets.EMPTY)));
 
-        });
 
 
 
@@ -88,42 +105,21 @@ public class AdminController {
         Label label2 = new Label("Secretaire");
         label2.setFont(Font.font("Tw Cen MT",18));
         navSecretaire.getChildren().add(label2);
-        navSecretaire.setOnMouseClicked(e6->{
-            navAdmin.setBackground(new Background(new BackgroundFill(Color.rgb(255, 255, 255), CornerRadii.EMPTY,Insets.EMPTY)));
-            navFormateur.setBackground(new Background(new BackgroundFill(Color.rgb(255, 255, 255), CornerRadii.EMPTY,Insets.EMPTY)));
-            navApprenant.setBackground(new Background(new BackgroundFill(Color.rgb(255, 255, 255), CornerRadii.EMPTY,Insets.EMPTY)));
-            usersVBox.setBackground(new Background(new BackgroundFill(Color.rgb(255, 255, 255), CornerRadii.EMPTY,Insets.EMPTY)));
-            navSecretaire.setBackground(new Background(new BackgroundFill(Color.rgb(244, 245, 219), CornerRadii.EMPTY,Insets.EMPTY)));
 
-        });
 
 
         Label label3 = new Label("Formateur");
         label3.setFont(Font.font("Tw Cen MT",18));
         navFormateur.getChildren().add(label3);
-        navFormateur.setOnMouseClicked(e6->{
-            navAdmin.setBackground(new Background(new BackgroundFill(Color.rgb(255, 255, 255), CornerRadii.EMPTY,Insets.EMPTY)));
-            navSecretaire.setBackground(new Background(new BackgroundFill(Color.rgb(255, 255, 255), CornerRadii.EMPTY,Insets.EMPTY)));
-            navApprenant.setBackground(new Background(new BackgroundFill(Color.rgb(255, 255, 255), CornerRadii.EMPTY,Insets.EMPTY)));
-            navFormateur.setBackground(new Background(new BackgroundFill(Color.rgb(244, 245, 219), CornerRadii.EMPTY,Insets.EMPTY)));
-            usersVBox.setBackground(new Background(new BackgroundFill(Color.rgb(255, 255, 255), CornerRadii.EMPTY,Insets.EMPTY)));
 
-        });
 
         Label label4 = new Label("Apprenant");
         label4.setFont(Font.font("Tw Cen MT",18));
         navApprenant.getChildren().add(label4);
-        navApprenant.setOnMouseClicked(e6->{
-            navAdmin.setBackground(new Background(new BackgroundFill(Color.rgb(255, 255, 255), CornerRadii.EMPTY,Insets.EMPTY)));
-            navFormateur.setBackground(new Background(new BackgroundFill(Color.rgb(255, 255, 255), CornerRadii.EMPTY,Insets.EMPTY)));
-            navSecretaire.setBackground(new Background(new BackgroundFill(Color.rgb(255, 255, 255), CornerRadii.EMPTY,Insets.EMPTY)));
-            navApprenant.setBackground(new Background(new BackgroundFill(Color.rgb(244, 245, 219), CornerRadii.EMPTY,Insets.EMPTY)));
-            usersVBox.setBackground(new Background(new BackgroundFill(Color.rgb(255, 255, 255), CornerRadii.EMPTY,Insets.EMPTY)));
-
-        });
 
 
-        utilisateurDAO= new UtilisateurDAO();
+
+        utilisateurDAO= new AdminDAO();
         HBox1.setMinHeight(200);
 
 
@@ -131,44 +127,115 @@ public class AdminController {
          * Utilisateurs Table
          * ************************/
 
-        TableView<Utilisateur> utilisateursTable = new TableView<Utilisateur>();
+        TableView<Admin> utilisateursTable = new TableView<Admin>();
 //        utilisateursTable.setMinHeight(150);
 
        //colomn id
-        TableColumn<Utilisateur, Integer> id = new TableColumn<>();
+        TableColumn<Admin, Integer> id = new TableColumn<>();
         id.setMinWidth(38);
         id.setCellValueFactory(new PropertyValueFactory<>("id"));
         id.setText("ID");
 
         //colomn Username
-        TableColumn<Utilisateur, String> Username = new TableColumn<>();
+        TableColumn<Admin, String> Username = new TableColumn<>();
         Username.setMinWidth(38);
         Username.setCellValueFactory(new PropertyValueFactory<>("userName"));
         Username.setText("Username");
 
         //colomn Nom
-        TableColumn<Utilisateur, String> Nom = new TableColumn<>();
+        TableColumn<Admin, String> Nom = new TableColumn<>();
         Nom.setMinWidth(38);
         Nom.setCellValueFactory(new PropertyValueFactory<>("nom"));
         Nom.setText("Nom");
 
         //colomn Prénom
-        TableColumn<Utilisateur, String> Prenom = new TableColumn<>();
+        TableColumn<Admin, String> Prenom = new TableColumn<>();
         Prenom.setMinWidth(38);
         Prenom.setCellValueFactory(new PropertyValueFactory<>("prenom"));
         Prenom.setText("Prénom");
 
         //colomn Role
-        TableColumn<Utilisateur, String> role = new TableColumn<>();
+        TableColumn<Admin, String> role = new TableColumn<>();
         role.setMinWidth(38);
         role.setCellValueFactory(new PropertyValueFactory<>("role"));
         role.setText("Role");
 
 
 
-
-
         utilisateursTable.setItems(utilisateurDAO.getAll());
+        usersVBox.setOnMouseClicked(e6->{
+            try {
+                utilisateursTable.setItems(utilisateurDAO.getAll());
+                navSecretaire.setBackground(new Background(new BackgroundFill(Color.rgb(255, 255, 255), CornerRadii.EMPTY,Insets.EMPTY)));
+                navFormateur.setBackground(new Background(new BackgroundFill(Color.rgb(255, 255, 255), CornerRadii.EMPTY,Insets.EMPTY)));
+                navApprenant.setBackground(new Background(new BackgroundFill(Color.rgb(255, 255, 255), CornerRadii.EMPTY,Insets.EMPTY)));
+                navAdmin.setBackground(new Background(new BackgroundFill(Color.rgb(255, 255, 255), CornerRadii.EMPTY,Insets.EMPTY)));
+                usersVBox.setBackground(new Background(new BackgroundFill(Color.rgb(244, 245, 219), CornerRadii.EMPTY,Insets.EMPTY)));
+            } catch (SQLException exception) {
+                exception.printStackTrace();
+            }
+
+
+
+        });
+
+        navSecretaire.setOnMouseClicked(e->{
+            try {
+                utilisateursTable.setItems(utilisateurDAO.getAll("Secretaire"));
+                navAdmin.setBackground(new Background(new BackgroundFill(Color.rgb(255, 255, 255), CornerRadii.EMPTY,Insets.EMPTY)));
+                navFormateur.setBackground(new Background(new BackgroundFill(Color.rgb(255, 255, 255), CornerRadii.EMPTY,Insets.EMPTY)));
+                navApprenant.setBackground(new Background(new BackgroundFill(Color.rgb(255, 255, 255), CornerRadii.EMPTY,Insets.EMPTY)));
+                usersVBox.setBackground(new Background(new BackgroundFill(Color.rgb(255, 255, 255), CornerRadii.EMPTY,Insets.EMPTY)));
+                navSecretaire.setBackground(new Background(new BackgroundFill(Color.rgb(244, 245, 219), CornerRadii.EMPTY,Insets.EMPTY)));
+            } catch (SQLException exception) {
+                exception.printStackTrace();
+            }
+
+        });
+        navFormateur.setOnMouseClicked(e->{
+            try {
+                utilisateursTable.setItems(utilisateurDAO.getAll("Formateur"));
+                navAdmin.setBackground(new Background(new BackgroundFill(Color.rgb(255, 255, 255), CornerRadii.EMPTY,Insets.EMPTY)));
+                navSecretaire.setBackground(new Background(new BackgroundFill(Color.rgb(255, 255, 255), CornerRadii.EMPTY,Insets.EMPTY)));
+                navApprenant.setBackground(new Background(new BackgroundFill(Color.rgb(255, 255, 255), CornerRadii.EMPTY,Insets.EMPTY)));
+                navFormateur.setBackground(new Background(new BackgroundFill(Color.rgb(244, 245, 219), CornerRadii.EMPTY,Insets.EMPTY)));
+                usersVBox.setBackground(new Background(new BackgroundFill(Color.rgb(255, 255, 255), CornerRadii.EMPTY,Insets.EMPTY)));
+            } catch (SQLException exception) {
+                exception.printStackTrace();
+            }
+        });
+        navAdmin.setOnMouseClicked(e->{
+            try {
+                utilisateursTable.setItems(utilisateurDAO.getAll("Admin"));
+                navSecretaire.setBackground(new Background(new BackgroundFill(Color.rgb(255, 255, 255), CornerRadii.EMPTY,Insets.EMPTY)));
+                navFormateur.setBackground(new Background(new BackgroundFill(Color.rgb(255, 255, 255), CornerRadii.EMPTY,Insets.EMPTY)));
+                navApprenant.setBackground(new Background(new BackgroundFill(Color.rgb(255, 255, 255), CornerRadii.EMPTY,Insets.EMPTY)));
+                usersVBox.setBackground(new Background(new BackgroundFill(Color.rgb(255, 255, 255), CornerRadii.EMPTY,Insets.EMPTY)));
+                navAdmin.setBackground(new Background(new BackgroundFill(Color.rgb(244, 245, 219), CornerRadii.EMPTY,Insets.EMPTY)));
+            } catch (SQLException exception) {
+                exception.printStackTrace();
+            }
+        });
+        navApprenant.setOnMouseClicked(e->{
+            try {
+                utilisateursTable.setItems(utilisateurDAO.getAll("Apprenant"));
+                navAdmin.setBackground(new Background(new BackgroundFill(Color.rgb(255, 255, 255), CornerRadii.EMPTY,Insets.EMPTY)));
+                navFormateur.setBackground(new Background(new BackgroundFill(Color.rgb(255, 255, 255), CornerRadii.EMPTY,Insets.EMPTY)));
+                navSecretaire.setBackground(new Background(new BackgroundFill(Color.rgb(255, 255, 255), CornerRadii.EMPTY,Insets.EMPTY)));
+                navApprenant.setBackground(new Background(new BackgroundFill(Color.rgb(244, 245, 219), CornerRadii.EMPTY,Insets.EMPTY)));
+                usersVBox.setBackground(new Background(new BackgroundFill(Color.rgb(255, 255, 255), CornerRadii.EMPTY,Insets.EMPTY)));
+            } catch (SQLException exception) {
+                exception.printStackTrace();
+            }
+        });
+
+
+
+
+
+
+
+
         utilisateursTable.getColumns().addAll(id, Username, Nom, Prenom, role);
         HBox1.getChildren().add(utilisateursTable);
 
@@ -179,9 +246,9 @@ public class AdminController {
 
 
 
-        /************************
-         * CRUD
-         * ************************/
+        /**********************************************************************************
+         ********************************* CRUD *******************************************
+         * ********************************************************************************/
 
         //Images
         Image addImage = new Image(getClass().getResource("/img/add.png").toString());
@@ -209,6 +276,7 @@ public class AdminController {
          * ************************/
         addIV.setOnMouseClicked(e3->{
             addUtilisateur();
+
         });
 
 //        Images View 2 + configuration
@@ -239,7 +307,7 @@ public class AdminController {
             String updatePwd = utilisateursTable.getSelectionModel().getSelectedItem().getPwd();
             String updateRole = utilisateursTable.getSelectionModel().getSelectedItem().getRole();
 
-            Utilisateur utilisateur = new Utilisateur(updateId,updateUsername,updateNom,updatePrenom,updatePwd,updateRole);
+            Admin utilisateur = new Admin(updateId,updateUsername,updateNom,updatePrenom,updatePwd,updateRole);
 
             //Instanciate field
             VBox UsernameVB = new VBox();
@@ -275,8 +343,7 @@ public class AdminController {
             Label roleLabel = new Label("Rôle:");
             ObservableList<String> options =
                     FXCollections.observableArrayList(
-                            "Admin", "Secretaire", "Formatuer", "Apprenant"
-
+                            "Admin", "Secretaire", "Formateur", "Apprenant"
                     );
             ComboBox roleInput = new ComboBox(options);
             roleVB.getChildren().add(roleLabel);
@@ -285,6 +352,7 @@ public class AdminController {
             roleVB.setPadding(new Insets(0,0,20,0));
 
             Button modifbtn = new Button("Modifier");
+            modifbtn.setCursor(Cursor.HAND);
 
             modifbtn.setOnAction(e4->{
 
@@ -298,11 +366,23 @@ public class AdminController {
 
 
             modifVBox = new VBox();
+
             modifVBox.getChildren().addAll(UsernameVB,nomVB,prenomVB,mdpVB,roleVB,modifbtn);
             modifVBox.setPadding(new Insets(0,0,0,30));
+            HBox1.getChildren().clear();
 
 
-            HBox1.getChildren().add(modifVBox);
+            if (HBox1.getChildren().isEmpty()){
+                try {
+                    adminCrud();
+                } catch (SQLException exception) {
+                    exception.printStackTrace();
+                }
+                HBox1.getChildren().add(modifVBox);
+            }else {
+                System.out.println("cannot");
+            }
+
 
 
 
@@ -343,6 +423,8 @@ public class AdminController {
             UsernameVB.getChildren().add(searchButton);
             searchButton.setOnAction(e5->{
                 utilisateursTable.setItems(utilisateurDAO.get(UsernameInput.getText()));
+                UsernameInput.setText("");
+
             });
 
 
@@ -375,7 +457,7 @@ public class AdminController {
             String deleteRole = utilisateursTable.getSelectionModel().getSelectedItem().getRole();
 
 
-            Utilisateur utilisateur = new Utilisateur(deleteId, deleteUsername, deleteNom, deletePrenom, deletePwd,deleteRole);
+            Admin utilisateur = new Admin(deleteId, deleteUsername, deleteNom, deletePrenom, deletePwd,deleteRole);
             try {
                 utilisateurDAO.delete(utilisateur);
                 adminCrud();
@@ -396,6 +478,8 @@ public class AdminController {
 
 
     }
+
+
 
 
 
@@ -435,7 +519,7 @@ public class AdminController {
         Label roleLabel = new Label("Rôle:");
         ObservableList<String> options =
                 FXCollections.observableArrayList(
-                        "Admin", "Secretaire", "Formatuer", "Apprenant"
+                        "Admin", "Secretaire", "Formateur", "Apprenant"
 
                 );
         ComboBox roleInput = new ComboBox(options);
@@ -446,11 +530,9 @@ public class AdminController {
 
         //The add Utulisateur Action
         addbtn.setOnAction(e1->{
-            utilisateurDAO= new UtilisateurDAO();
-            Utilisateur utilisateur = new Utilisateur(0,UsernameInput.getText(),nomInput.getText(),prenomInput.getText(),mdpInput.getText(), (String) roleInput.getValue());
+            utilisateurDAO= new AdminDAO();
+            Admin utilisateur = new Admin(0,UsernameInput.getText(),nomInput.getText(),prenomInput.getText(),mdpInput.getText(), (String) roleInput.getValue());
 
-            System.out.println(UsernameInput.getText());
-            System.out.println(utilisateur.getRole());
 
             utilisateurDAO.add(utilisateur);
 
@@ -458,24 +540,12 @@ public class AdminController {
         });
 
         //Filling the VBox
-        buttonsVBox.getChildren().addAll(UsernameVB,nomVB,prenomVB,mdpVB,roleVB,addbtn);
+        buttonsVBox.getChildren().addAll(UsernameVB,nomVB,prenomVB,mdpVB,roleVB, new Label(), new Label(),addbtn);
 
     }
 
-    @FXML
-    private void getUtilisateurs() throws SQLException {
-//        HBox1.getChildren().add(putTable());
 
-    }
 
-    @FXML
-    private void updateUtilisateur(){
-
-    }
-    @FXML
-    private void deleteUtilisateur(){
-
-    }
 
     @FXML
     private void logout() throws IOException {
