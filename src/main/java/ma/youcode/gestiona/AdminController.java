@@ -91,12 +91,17 @@ public class AdminController {
 
         Label label0 = new Label("Utilisateurs");
         label0.setFont(Font.font("Tw Cen MT",18));
-        usersVBox.getChildren().add(label0);
+        if (usersVBox.getChildren().isEmpty()){
+            usersVBox.getChildren().add(label0);
+
+        }
 
 
         Label label1 = new Label("Admin");
         label1.setFont(Font.font("Tw Cen MT",18));
-        navAdmin.getChildren().add(label1);
+        if (navAdmin.getChildren().isEmpty()){
+            navAdmin.getChildren().add(label1);
+        }
 
 
 
@@ -104,18 +109,26 @@ public class AdminController {
 
         Label label2 = new Label("Secretaire");
         label2.setFont(Font.font("Tw Cen MT",18));
-        navSecretaire.getChildren().add(label2);
+        if (navSecretaire.getChildren().isEmpty()){
+            navSecretaire.getChildren().add(label2);
+
+        }
 
 
 
         Label label3 = new Label("Formateur");
         label3.setFont(Font.font("Tw Cen MT",18));
-        navFormateur.getChildren().add(label3);
+        if (navFormateur.getChildren().isEmpty()){
+            navFormateur.getChildren().add(label3);
+
+        }
 
 
         Label label4 = new Label("Apprenant");
         label4.setFont(Font.font("Tw Cen MT",18));
-        navApprenant.getChildren().add(label4);
+        if (navApprenant.getChildren().isEmpty()){
+            navApprenant.getChildren().add(label4);
+        }
 
 
 
@@ -371,7 +384,6 @@ public class AdminController {
             modifVBox.setPadding(new Insets(0,0,0,30));
             HBox1.getChildren().clear();
 
-
             if (HBox1.getChildren().isEmpty()){
                 try {
                     adminCrud();
@@ -416,14 +428,25 @@ public class AdminController {
             UsernameVB.getChildren().add(UsernameLabel);
             UsernameVB.getChildren().add(UsernameInput);
             UsernameVB.getChildren().add(new Label());
+            UsernameVB.setId("UsernameVB");
             UsernameVB.setPadding(new Insets(0,30,0,0));
-            HBox1.getChildren().add(0, UsernameVB);
+            if (!(HBox1.getChildren().get(0).getId() == "UsernameVB")) {
+                HBox1.getChildren().add(0, UsernameVB);
+            }else {
+                System.out.println("nooooooooooooo");
+            }
+
 
             Button searchButton = new Button("Search");
             UsernameVB.getChildren().add(searchButton);
             searchButton.setOnAction(e5->{
-                utilisateursTable.setItems(utilisateurDAO.get(UsernameInput.getText()));
-                UsernameInput.setText("");
+                if (!(UsernameInput.getText().equals(""))){
+                    utilisateursTable.setItems(utilisateurDAO.get(UsernameInput.getText()));
+                    UsernameInput.setText("");
+                }else {
+                    UsernameVB.getChildren().add(new Label("Valeur Introuvable"));
+                }
+
 
             });
 
@@ -535,6 +558,7 @@ public class AdminController {
 
 
             utilisateurDAO.add(utilisateur);
+
 
 
         });
