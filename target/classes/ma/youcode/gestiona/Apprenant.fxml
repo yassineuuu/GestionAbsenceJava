@@ -16,6 +16,7 @@
                <cursor>
                   <Cursor fx:constant="DEFAULT" />
                </cursor></TextField>
+            <ComboBox fx:id="comb" layoutX="21.0" layoutY="187.0" prefWidth="150.0" />
          </children>
       </AnchorPane>
       <TableView fx:id="table_absence" layoutX="185.0" layoutY="-1.0" prefHeight="400.0" prefWidth="464.0">

@@ -19,7 +19,7 @@ public class ApprenantDAOImp implements ApprenantDAO<Apprenant> {
         try{
             Connection cnx = ConnectionFactory.getConnection();
             PreparedStatement prepared;
-            String query = "SELECT * FROM etudiants WHERE nom = '"+nom+"'";
+            String query = "SELECT * FROM `etudiants` WHERE EXTRACT(MONTH FROM date)= '"+nom+"'";
 
             Statement st;
             ResultSet rs;
