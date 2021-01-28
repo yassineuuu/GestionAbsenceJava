@@ -4,38 +4,28 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
-import javafx.geometry.Orientation;
 import javafx.scene.Cursor;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.effect.Effect;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
-import ma.youcode.gestiona.Connection.ConnectionFactory;
-import ma.youcode.gestiona.DAO.DAO;
-import ma.youcode.gestiona.ImpDAO.AdminDAO;
-import ma.youcode.gestiona.ImpDAO.FormateurDAO;
-import ma.youcode.gestiona.ImpDAO.SecretaireDAO;
-import ma.youcode.gestiona.ImpDAO.UtilisateurDAO;
+import ma.youcode.gestiona.ImpDAO.AdminAdminDAO;
+import ma.youcode.gestiona.ImpDAO.FormateurAdminDAO;
+import ma.youcode.gestiona.ImpDAO.SecretaireAdminDAO;
 import ma.youcode.gestiona.Modeles.Admin;
-import ma.youcode.gestiona.Modeles.Formateur;
-import ma.youcode.gestiona.Modeles.Utilisateur;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class AdminController {
 
-    AdminDAO utilisateurDAO;
-    AdminDAO adminDAO;
-    SecretaireDAO secretaireDAO;
-    FormateurDAO formateurDAO;
+    AdminAdminDAO utilisateurDAO;
+    AdminAdminDAO adminDAO;
+    SecretaireAdminDAO secretaireDAO;
+    FormateurAdminDAO formateurDAO;
 
     VBox modifVBox;
 
@@ -132,7 +122,7 @@ public class AdminController {
 
 
 
-        utilisateurDAO= new AdminDAO();
+        utilisateurDAO= new AdminAdminDAO();
         HBox1.setMinHeight(200);
 
 
@@ -553,7 +543,7 @@ public class AdminController {
 
         //The add Utulisateur Action
         addbtn.setOnAction(e1->{
-            utilisateurDAO= new AdminDAO();
+            utilisateurDAO= new AdminAdminDAO();
             Admin utilisateur = new Admin(0,UsernameInput.getText(),nomInput.getText(),prenomInput.getText(),mdpInput.getText(), (String) roleInput.getValue());
 
 

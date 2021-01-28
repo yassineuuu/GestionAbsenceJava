@@ -3,7 +3,6 @@ package ma.youcode.gestiona.ImpDAO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import ma.youcode.gestiona.Connection.ConnectionFactory;
-import ma.youcode.gestiona.DAO.DAO;
 import ma.youcode.gestiona.Modeles.Admin;
 import ma.youcode.gestiona.Modeles.Utilisateur;
 
@@ -11,10 +10,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.List;
-import java.util.Optional;
 
-public class AdminDAO implements DAO<Admin> {
+public class AdminAdminDAO implements ma.youcode.gestiona.DAO.AdminDAO<Admin> {
     @Override
     public ObservableList<Admin> get(String Username) {
 
