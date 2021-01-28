@@ -26,6 +26,8 @@ public class ApprenantController implements Initializable{
     @FXML private TableColumn<Apprenant,String> col_classe;
     @FXML private TableColumn<Apprenant,String> col_absence;
     @FXML private TableColumn<Apprenant,String> col_justifier;
+    @FXML private TableColumn<Apprenant,String> col_date;
+
     @FXML private Button searchBtn;
     @FXML private ComboBox comb;
 
@@ -42,6 +44,7 @@ public class ApprenantController implements Initializable{
             col_classe.setCellValueFactory(new PropertyValueFactory<Apprenant,String>("classe"));
             col_absence.setCellValueFactory(new PropertyValueFactory<Apprenant,String>("absence"));
             col_justifier.setCellValueFactory(new PropertyValueFactory<Apprenant,String>("justifier"));
+            col_date.setCellValueFactory(new PropertyValueFactory<Apprenant,String>("date"));
 
 
 

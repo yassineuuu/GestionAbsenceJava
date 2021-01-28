@@ -29,7 +29,7 @@ public class ApprenantDAOImp implements ApprenantDAO<Apprenant> {
                 rs = st.executeQuery(query);
                 Apprenant etudiant;
                 while (rs.next()) {
-                    etudiant = new Apprenant(rs.getInt("id"),rs.getInt("idapprenant"), rs.getString("nom"),
+                    etudiant = new Apprenant(rs.getInt("id"),rs.getDate("date"),rs.getInt("idapprenant"), rs.getString("nom"),
                             rs.getString("prenom"), rs.getString("classe"),rs.getString("promotion"),
                             rs.getString("absence"), rs.getString("justifier"));
                     etudiantList.add(etudiant);
