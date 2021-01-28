@@ -2,11 +2,13 @@ package ma.youcode.gestiona.Modeles;
 
 public class Apprenant extends Utilisateur{
 
+    private int idApprenant;
+    private String promotion;
+    private String classe;
 
 //    Constructeur
-    public Apprenant(String userName, String pwd, String type) {
-        super(userName, pwd, type);
+
+    public Apprenant(int id, String userName, String nom, String prenom, String pwd, String type) {
+        super(id, userName, nom, prenom, pwd, type);
     }
-
-
 }

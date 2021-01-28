@@ -1,15 +1,20 @@
 package ma.youcode.gestiona.ImpDAO;
 
-import ma.youcode.gestiona.DAO.DAO;
+import javafx.collections.ObservableList;
+import ma.youcode.gestiona.DAO.AdminDAO;
 import ma.youcode.gestiona.Modeles.Secretaire;
 
 import java.util.List;
-import java.util.Optional;
 
-public class SecretaireDAO implements DAO<Secretaire> {
+public class SecretaireAdminDAO implements AdminDAO<Secretaire> {
     @Override
-    public Optional<Secretaire> get(int id) {
-        return Optional.empty();
+    public ObservableList<Secretaire> get(String Username) {
+        return null;
+    }
+
+    @Override
+    public void add(Secretaire secretaire) {
+
     }
 
     @Override

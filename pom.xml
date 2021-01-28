@@ -6,10 +6,11 @@
     <version>1.0-SNAPSHOT</version>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>11</maven.compiler.source>
-        <maven.compiler.target>11</maven.compiler.target>
+        <maven.compiler.source>15</maven.compiler.source>
+        <maven.compiler.target>15</maven.compiler.target>
     </properties>
     <dependencies>
+
 
         <dependency>
             <groupId>mysql</groupId>
@@ -26,8 +27,24 @@
             <artifactId>javafx-fxml</artifactId>
             <version>13</version>
         </dependency>
+
+<!--        &lt;!&ndash; https://mvnrepository.com/artifact/clojure-interop/java.util.prefs &ndash;&gt;-->
+<!--        <dependency>-->
+<!--            <groupId>clojure-interop</groupId>-->
+<!--            <artifactId>java.util.prefs</artifactId>-->
+<!--            <version>1.0.5</version>-->
+<!--        </dependency>-->
+
+
+
     </dependencies>
+
     <build>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+            </resource>
+        </resources>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
