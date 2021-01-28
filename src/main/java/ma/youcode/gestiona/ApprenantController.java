@@ -21,9 +21,6 @@ import java.util.ResourceBundle;
 public class ApprenantController implements Initializable{
 
     @FXML private TableView<Apprenant> table_absence;
-    @FXML private TableColumn<Apprenant,String> col_nom;
-    @FXML private TableColumn<Apprenant,String> col_prenom;
-    @FXML private TableColumn<Apprenant,String> col_classe;
     @FXML private TableColumn<Apprenant,String> col_absence;
     @FXML private TableColumn<Apprenant,String> col_justifier;
     @FXML private TableColumn<Apprenant,String> col_date;
@@ -39,9 +36,6 @@ public class ApprenantController implements Initializable{
 
 
         searchBtn.setOnAction(e->{
-            col_nom.setCellValueFactory(new PropertyValueFactory<Apprenant,String>("nom"));
-            col_prenom.setCellValueFactory(new PropertyValueFactory<Apprenant,String>("prenom"));
-            col_classe.setCellValueFactory(new PropertyValueFactory<Apprenant,String>("classe"));
             col_absence.setCellValueFactory(new PropertyValueFactory<Apprenant,String>("absence"));
             col_justifier.setCellValueFactory(new PropertyValueFactory<Apprenant,String>("justifier"));
             col_date.setCellValueFactory(new PropertyValueFactory<Apprenant,String>("date"));

@@ -13,16 +13,14 @@
                   <Cursor fx:constant="HAND" />
                </cursor></Button>
             <ComboBox fx:id="comb" layoutX="21.0" layoutY="150.0" prefWidth="150.0" />
+            <Label layoutX="21.0" layoutY="126.0" text="choisir le mois" textFill="WHITE" />
          </children>
       </AnchorPane>
       <TableView fx:id="table_absence" layoutX="185.0" layoutY="-1.0" prefHeight="400.0" prefWidth="462.0">
         <columns>
-          <TableColumn fx:id="col_date" prefWidth="77.33331298828125" text="date" />
-            <TableColumn fx:id="col_nom" prefWidth="73.33331298828125" text="nom" />
-            <TableColumn fx:id="col_prenom" prefWidth="79.0" text="prenom" />
-            <TableColumn fx:id="col_classe" prefWidth="69.6666259765625" text="classe" />
-            <TableColumn fx:id="col_absence" minWidth="0.0" prefWidth="78.00003051757812" text="absence" />
-            <TableColumn fx:id="col_justifier" prefWidth="91.0" text="justifier" />
+          <TableColumn fx:id="col_absence" prefWidth="154.66664123535156" text="absence" />
+            <TableColumn fx:id="col_justifier" minWidth="0.0" prefWidth="162.0" text="justifier" />
+            <TableColumn fx:id="col_date" prefWidth="144.66671752929688" text="date" />
         </columns>
       </TableView>
    </children>
