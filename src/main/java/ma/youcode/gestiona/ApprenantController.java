@@ -18,7 +18,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ResourceBundle;
 
-public class ApprenantController{
+public class ApprenantController implements Initializable{
 
     @FXML private TableView<Apprenant> table_absence;
     @FXML private TableColumn<Apprenant,String> col_nom;
@@ -26,7 +26,6 @@ public class ApprenantController{
     @FXML private TableColumn<Apprenant,String> col_classe;
     @FXML private TableColumn<Apprenant,String> col_absence;
     @FXML private TableColumn<Apprenant,String> col_justifier;
-    @FXML private TextField txt_name;
     @FXML private Button searchBtn;
     @FXML private ComboBox comb;
 
@@ -44,12 +43,21 @@ public class ApprenantController{
             col_absence.setCellValueFactory(new PropertyValueFactory<Apprenant,String>("absence"));
             col_justifier.setCellValueFactory(new PropertyValueFactory<Apprenant,String>("justifier"));
 
-            ObservableList<String> list = FXCollections.observableArrayList("ghdfgfd","fdgfd");
-            comb.setItems(list);
+
 
             ApprenantDAOImp apprenantDAO =new ApprenantDAOImp();
-            table_absence.setItems(apprenantDAO.getByName(txt_name.getText()));
+            table_absence.setItems(apprenantDAO.getByName(String.valueOf(comb.getValue())));
         });
 
+    }
+    public void fillCombobox(){
+        ObservableList<String> list = FXCollections.observableArrayList("1","2","3","4","5","6","7","8","9","10","11","12");
+
+        comb.setItems(list);
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        fillCombobox();
     }
 }
