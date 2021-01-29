@@ -5,16 +5,27 @@ public class Utilisateur {
 //    Variables
     private int id;
     private String userName;
+    private String nom;
+    private String prenom;
     private String pwd;
-    private String type;
+    private String Role;
 
 
 //    Constructeur
 
-    public Utilisateur(String userName,String pwd, String type) {
+    public Utilisateur(int id, String userName, String nom, String prenom, String pwd, String Role) {
+        this.id = id;
+        this.userName = userName;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.pwd = pwd;
+        this.Role = Role;
+    }
+
+    public Utilisateur(String userName, String pwd, String Role) {
         this.userName = userName;
         this.pwd = pwd;
-        this.type = type;
+        this.Role = Role;
     }
 
 
@@ -37,12 +48,35 @@ public class Utilisateur {
         this.userName = userName;
     }
 
-    public String getType() {
-        return type;
+    public String getRole() {
+        return Role;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setRole(String Role) {
+        this.Role = Role;
+    }
+    public String getNom() {
+        return nom;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    public String getPrenom() {
+        return prenom;
+    }
+
+    public void setPrenom(String prenom) {
+        this.prenom = prenom;
+    }
+
+    public String getPwd() {
+        return pwd;
+    }
+
+    public void setPwd(String pwd) {
+        this.pwd = pwd;
     }
 
 
