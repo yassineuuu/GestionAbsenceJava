@@ -28,6 +28,12 @@ public class Utilisateur {
         this.Role = Role;
     }
 
+    public Utilisateur(int id, String nom, String prenom) {
+        this.id=id;
+        this.nom=nom;
+        this.prenom=prenom;
+    }
+
 
 //    Getters/Setters
 

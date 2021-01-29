@@ -1,18 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<?import javafx.geometry.Insets?>
-<VBox alignment="CENTER" spacing="20.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ma.youcode.gestiona.ApprenantController">
-    <children>
-        <Label text="Apprenant View(Mohcine Echaoufi)" />
-        <Button fx:id="apprenantButton" text="Switch" onAction="#switchToLogin" />
-    </children>
-    <padding>
-        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-    </padding>
-</VBox>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="648.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ma.youcode.gestiona.ApprenantController">
+   <children>
+      <AnchorPane layoutX="-1.0" layoutY="-1.0" prefHeight="400.0" prefWidth="185.0" style="-fx-background-color: #28252e;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Button fx:id="searchBtn" layoutX="35.0" layoutY="240.0" mnemonicParsing="false" onAction="#getStudent" prefHeight="38.0" prefWidth="115.0" style="-fx-background-color: orange;" text="Recherche">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
+            <ComboBox fx:id="comb" layoutX="21.0" layoutY="150.0" prefWidth="150.0" />
+         </children>
+      </AnchorPane>
+      <TableView fx:id="table_absence" layoutX="185.0" layoutY="-1.0" prefHeight="400.0" prefWidth="462.0">
+        <columns>
+          <TableColumn fx:id="col_date" prefWidth="77.33331298828125" text="date" />
+            <TableColumn fx:id="col_nom" prefWidth="73.33331298828125" text="nom" />
+            <TableColumn fx:id="col_prenom" prefWidth="79.0" text="prenom" />
+            <TableColumn fx:id="col_classe" prefWidth="69.6666259765625" text="classe" />
+            <TableColumn fx:id="col_absence" minWidth="0.0" prefWidth="78.00003051757812" text="absence" />
+            <TableColumn fx:id="col_justifier" prefWidth="91.0" text="justifier" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>
