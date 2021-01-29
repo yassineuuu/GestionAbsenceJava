@@ -136,4 +136,9 @@ public class FormateurController implements Initializable {
 
 
     }
+
+    @FXML
+    private void logout() throws IOException {
+        Main.setRoot("login");
+    }
 }

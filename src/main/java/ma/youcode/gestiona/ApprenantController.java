@@ -8,6 +8,8 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import ma.youcode.gestiona.ImpDAO.ApprenantDAOImp;
 import ma.youcode.gestiona.Modeles.ApprenantApprenant;
+
+import java.io.IOException;
 import java.util.prefs.Preferences;
 
 
@@ -60,5 +62,11 @@ public class ApprenantController implements Initializable{
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         fillCombobox();
+    }
+
+
+    @FXML
+    private void logout() throws IOException {
+        Main.setRoot("login");
     }
 }

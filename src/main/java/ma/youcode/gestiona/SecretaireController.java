@@ -1,5 +1,6 @@
 package ma.youcode.gestiona;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -126,5 +127,9 @@ public class SecretaireController implements Initializable {
 
     }
 
+    @FXML
+    private void logout() throws IOException {
+        Main.setRoot("login");
+    }
 
 }
