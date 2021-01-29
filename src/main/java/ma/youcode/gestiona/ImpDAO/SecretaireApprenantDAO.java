@@ -20,10 +20,10 @@ public class SecretaireApprenantDAO implements DAO<Apprenant> {
     }
 
     @Override
-    public ObservableList<Apprenant> getAll() {
+    public ObservableList<Apprenant> getAll(){
+
 
         ObservableList<Apprenant> list = FXCollections.observableArrayList();
-
         try {
             Connection conn = ConnectionFactory.getConnection();
             PreparedStatement ps = conn.prepareStatement("select * from absences");
