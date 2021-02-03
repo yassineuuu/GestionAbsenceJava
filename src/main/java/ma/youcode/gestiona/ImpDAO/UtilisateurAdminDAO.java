@@ -26,8 +26,6 @@ public class UtilisateurAdminDAO implements AdminDAO<Utilisateur> {
                 Utilisateur utilisateur = new Utilisateur(resultSet.getInt("id"), resultSet.getString("Username"), resultSet.getString("Nom"),
                         resultSet.getString("Prenom"), resultSet.getString("MDP"), resultSet.getString("Role"));
                 utilisateursList.add(utilisateur);
-//                       System.out.println(utilisateur.getUserName());
-
             }
             resultSet.close();
             preparedStatement.close();

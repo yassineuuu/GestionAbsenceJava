@@ -12,17 +12,22 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
-import ma.youcode.gestiona.ImpDAO.AdminAdminDAO;
-import ma.youcode.gestiona.ImpDAO.FormateurAdminDAO;
-import ma.youcode.gestiona.ImpDAO.SecretaireAdminDAO;
+import ma.youcode.gestiona.ImpDAO.*;
 import ma.youcode.gestiona.Modeles.Admin;
+import ma.youcode.gestiona.Modeles.Formateur;
+import ma.youcode.gestiona.Modeles.FormateurApprenants;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.prefs.Preferences;
 
 public class AdminController {
+    Preferences preferences = Preferences.userNodeForPackage(getClass());
 
     AdminAdminDAO utilisateurDAO;
+    UtilisateurAdminDAO utilisateurAdminDAO;
+    FormateurApprenantDAO formateurApprenantDAO;
+    FormateurDAOImp formateurDAOImp;
     AdminAdminDAO adminDAO;
     SecretaireAdminDAO secretaireDAO;
     FormateurAdminDAO formateurDAO;
@@ -38,6 +43,10 @@ public class AdminController {
     private HBox acceuilBtn;
     @FXML
     private HBox tablesBtn;
+    @FXML
+    private HBox classesBtn;
+    @FXML
+    private HBox promotionBtn;
     @FXML
     private HBox HBox2;
     @FXML
@@ -62,6 +71,8 @@ public class AdminController {
     private void adminCrud() throws SQLException {
 
         acceuilBtn.setBackground(new Background(new BackgroundFill(Color.rgb(255, 255, 255), CornerRadii.EMPTY,Insets.EMPTY)));
+        classesBtn.setBackground(new Background(new BackgroundFill(Color.rgb(255, 255, 255), CornerRadii.EMPTY,Insets.EMPTY)));
+        promotionBtn.setBackground(new Background(new BackgroundFill(Color.rgb(255, 255, 255), CornerRadii.EMPTY,Insets.EMPTY)));
         tablesBtn.setBackground(new Background(new BackgroundFill(Color.rgb(244, 245, 219), CornerRadii.EMPTY,Insets.EMPTY)));
         acceuilBtn.setOnMouseClicked(e->{
             try {
@@ -543,15 +554,89 @@ public class AdminController {
         addbtn.setCursor(Cursor.HAND);
 
         //Filling the VBox
-        buttonsVBox.getChildren().addAll(UsernameVB,nomVB,prenomVB,mdpVB,roleVB, new Label(), new Label(),addbtn);
+        buttonsVBox.getChildren().addAll(UsernameVB,nomVB,prenomVB,mdpVB,roleVB, new Label(),addbtn);
 
         //The add Utulisateur Action
         addbtn.setOnAction(e1->{
             utilisateurDAO= new AdminAdminDAO();
             Admin utilisateur = new Admin(0,UsernameInput.getText(),nomInput.getText(),prenomInput.getText(),mdpInput.getText(), (String) roleInput.getValue());
 
-
             utilisateurDAO.add(utilisateur);
+            if (roleInput.getValue().equals("Apprenant")){
+
+                VBox promoVB = new VBox();
+                Label promoLabel = new Label("Promotion:");
+                TextField promoInput = new TextField();
+                promoVB.getChildren().add(promoLabel);
+                promoVB.getChildren().add(promoInput);
+
+                VBox classeVB = new VBox();
+                Label classeLabel = new Label("Classe:");
+                TextField classeInput = new TextField();
+                classeVB.getChildren().add(classeLabel);
+                classeVB.getChildren().add(classeInput);
+
+                VBox formateurVB = new VBox();
+                Label formaeurLabel = new Label("Formateur_Id:");
+                TextField formateurInput = new TextField();
+                formateurVB.getChildren().add(formaeurLabel);
+                formateurVB.getChildren().add(formateurInput);
+
+                Button addappr = new Button("Ajouter Apprenant");
+                addappr.setCursor(Cursor.HAND);
+
+                buttonsVBox.getChildren().remove(addbtn);
+                buttonsVBox.getChildren().remove(roleVB);
+                buttonsVBox.getChildren().addAll(promoVB, classeVB, formateurVB, new Label(), addappr);
+                utilisateurAdminDAO=new UtilisateurAdminDAO();
+                formateurApprenantDAO=new FormateurApprenantDAO();
+                addappr.setOnAction(e->{
+                    int id_user = utilisateurAdminDAO.get(utilisateur.getUserName()).get(0).getId();
+                    System.out.println(utilisateurAdminDAO.get(utilisateur.getUserName()).get(0).getId());
+                    FormateurApprenants formateurApprenants = new FormateurApprenants(nomInput.getText(), prenomInput.getText(), Integer.parseInt(formateurInput.getText()),classeInput.getText(),promoInput.getText());
+                    formateurApprenantDAO.save(formateurApprenants,id_user);
+                    buttonsVBox.getChildren().add(new Label("Apprenant Ajouté!!"));
+
+                });
+
+
+
+            }
+            if (roleInput.getValue().equals("Formateur")){
+
+                VBox promoVB = new VBox();
+                Label promoLabel = new Label("Promotion:");
+                TextField promoInput = new TextField();
+                promoVB.getChildren().add(promoLabel);
+                promoVB.getChildren().add(promoInput);
+
+                VBox classeVB = new VBox();
+                Label classeLabel = new Label("Classe:");
+                TextField classeInput = new TextField();
+                classeVB.getChildren().add(classeLabel);
+                classeVB.getChildren().add(classeInput);
+
+
+                Button addappr = new Button("Ajouter Apprenant");
+                addappr.setCursor(Cursor.HAND);
+
+                buttonsVBox.getChildren().remove(addbtn);
+                buttonsVBox.getChildren().remove(roleVB);
+                buttonsVBox.getChildren().addAll(promoVB, classeVB, new Label(), addappr);
+                utilisateurAdminDAO=new UtilisateurAdminDAO();
+                formateurDAOImp=new FormateurDAOImp();
+                addappr.setOnAction(e->{
+                    int id_user = utilisateurAdminDAO.get(utilisateur.getUserName()).get(0).getId();
+                    System.out.println(utilisateurAdminDAO.get(utilisateur.getUserName()).get(0).getId());
+                    Formateur formateur = new Formateur(nomInput.getText(), prenomInput.getText(),classeInput.getText(),promoInput.getText());
+                    formateurDAOImp.save(formateur,id_user);
+                    buttonsVBox.getChildren().add(new Label("Formateur Ajouté!!"));
+
+                });
+
+
+
+            }
 
             buttonsVBox.getChildren().add(new Label("Utilisateur  Ajouté!!"));
 
@@ -569,5 +654,41 @@ public class AdminController {
     @FXML
     private void logout() throws IOException {
         Main.setRoot("login");
+    }
+    @FXML
+    private void classesCrud() throws IOException {
+        buttonsVBox.getChildren().clear();
+        acceuilBtn.setBackground(new Background(new BackgroundFill(Color.rgb(255, 255, 255), CornerRadii.EMPTY,Insets.EMPTY)));
+        tablesBtn.setBackground(new Background(new BackgroundFill(Color.rgb(255, 255, 255), CornerRadii.EMPTY,Insets.EMPTY)));
+        promotionBtn.setBackground(new Background(new BackgroundFill(Color.rgb(255, 255, 255), CornerRadii.EMPTY,Insets.EMPTY)));
+        classesBtn.setBackground(new Background(new BackgroundFill(Color.rgb(244, 245, 219), CornerRadii.EMPTY,Insets.EMPTY)));
+        adminCenterBox.setBackground(new Background(new BackgroundFill(Color.rgb(5, 141, 254), CornerRadii.EMPTY,Insets.EMPTY)));
+        buttonsVBox.setBackground(new Background(new BackgroundFill(Color.rgb(5, 141, 254), CornerRadii.EMPTY,Insets.EMPTY)));
+
+
+        acceuilBtn.setOnMouseClicked(e->{
+            try {
+                Main.setRoot("admin");
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            }
+        });
+    }
+    @FXML
+    private void promotionsCrud() throws IOException {
+        buttonsVBox.getChildren().clear();
+        acceuilBtn.setBackground(new Background(new BackgroundFill(Color.rgb(255, 255, 255), CornerRadii.EMPTY,Insets.EMPTY)));
+        tablesBtn.setBackground(new Background(new BackgroundFill(Color.rgb(255, 255, 255), CornerRadii.EMPTY,Insets.EMPTY)));
+        classesBtn.setBackground(new Background(new BackgroundFill(Color.rgb(255, 255, 255), CornerRadii.EMPTY,Insets.EMPTY)));
+        promotionBtn.setBackground(new Background(new BackgroundFill(Color.rgb(244, 245, 219), CornerRadii.EMPTY,Insets.EMPTY)));
+        buttonsVBox.setBackground(new Background(new BackgroundFill(Color.rgb(5, 141, 254), CornerRadii.EMPTY,Insets.EMPTY)));
+
+        acceuilBtn.setOnMouseClicked(e->{
+            try {
+                Main.setRoot("admin");
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            }
+        });
     }
 }

@@ -1,29 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="699.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ma.youcode.gestiona.FormateurController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="580.0" prefWidth="920.0" style="-fx-background-color: #058DFE;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ma.youcode.gestiona.FormateurController">
    <top>
-      <AnchorPane prefHeight="46.0" prefWidth="700.0" style="-fx-background-color: #01DFD7;" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="46.0" prefWidth="700.0" style="-fx-background-color: #0061ca;" BorderPane.alignment="CENTER">
          <children>
-            <Label fx:id="formateur_name" alignment="CENTER" contentDisplay="CENTER" layoutX="284.0" layoutY="6.0" textAlignment="CENTER" textFill="#1f0bd7">
+            <Label fx:id="formateur_name" alignment="CENTER" contentDisplay="CENTER" layoutX="71.0" layoutY="26.0" textAlignment="CENTER" textFill="WHITE">
                <font>
-                  <Font size="24.0" />
+                  <Font name="Tw Cen MT" size="24.0" />
                </font>
             </Label>
-            <Button layoutX="622.0" layoutY="11.0" mnemonicParsing="false" onAction="#logout" style="-fx-background-color: ee1551;" text="logout" textFill="WHITE">
+            <Button layoutX="829.0" layoutY="24.0" mnemonicParsing="false" onAction="#logout" style="-fx-background-color: ee1551;" text="logout" textFill="WHITE">
                <font>
                   <Font name="Tw Cen MT" size="16.0" />
                </font>
             </Button>
-         </children></AnchorPane>
+         </children>
+         <padding>
+            <Insets bottom="10.0" top="10.0" />
+         </padding></AnchorPane>
    </top>
    <right>
       <AnchorPane prefHeight="391.0" prefWidth="386.0" BorderPane.alignment="CENTER">
          <children>
-            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="-1.0" prefHeight="32.0" prefWidth="129.0" text="Liste Absence :" textAlignment="CENTER" textFill="#1f0bd7">
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="-1.0" prefHeight="32.0" prefWidth="129.0" text="Liste Absence :" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font size="18.0" />
                </font></Label>
@@ -34,22 +38,25 @@
               </columns>
             </TableView>
          </children>
+         <BorderPane.margin>
+            <Insets right="50.0" />
+         </BorderPane.margin>
       </AnchorPane>
    </right>
    <left>
       <AnchorPane prefHeight="384.0" prefWidth="312.0" BorderPane.alignment="CENTER">
          <children>
-            <Label layoutX="14.0" layoutY="86.0" prefHeight="19.0" prefWidth="92.0" text="Nom Etudiant :" textFill="#1f0bd7">
+            <Label layoutX="14.0" layoutY="86.0" prefHeight="19.0" prefWidth="92.0" text="Nom Etudiant :" textFill="WHITE">
                <font>
                   <Font size="13.0" />
                </font>
             </Label>
-            <Label layoutX="15.0" layoutY="146.0" text="Date Absence :" textFill="#1f0bd7">
+            <Label layoutX="15.0" layoutY="146.0" text="Date Absence :" textFill="WHITE">
                <font>
                   <Font size="13.0" />
                </font>
             </Label>
-            <Label layoutX="15.0" layoutY="199.0" prefHeight="17.0" prefWidth="86.0" text="Type Absence :" textFill="#1f0bd7">
+            <Label layoutX="15.0" layoutY="199.0" prefHeight="17.0" prefWidth="86.0" text="Type Absence :" textFill="WHITE">
                <font>
                   <Font size="13.0" />
                </font>
@@ -61,6 +68,9 @@
             <Button fx:id="buttonModifier" layoutX="213.0" layoutY="319.0" mnemonicParsing="false" text="Modifier" />
             <Button fx:id="buttonSupprimer" layoutX="124.0" layoutY="319.0" mnemonicParsing="false" text="supprimer" />
          </children>
+         <BorderPane.margin>
+            <Insets left="50.0" />
+         </BorderPane.margin>
       </AnchorPane>
    </left>
 </BorderPane>

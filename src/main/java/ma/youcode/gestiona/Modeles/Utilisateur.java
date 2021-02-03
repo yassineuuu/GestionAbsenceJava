@@ -34,7 +34,11 @@ public class Utilisateur {
         this.prenom=prenom;
     }
 
+    public Utilisateur() {
+    }
 
+    public Utilisateur(int id) {
+    }
 //    Getters/Setters
 
 

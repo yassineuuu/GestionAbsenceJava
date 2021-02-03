@@ -7,6 +7,20 @@ public class ClasseAbsence {
     private String prenom;
     private String type_absence;
     private String date_absence;
+    private String classe;
+    private String promotion;
+
+
+    public ClasseAbsence(int id_absence, String nom, String prenom, String type_absence, String date_absence, String classe, String promotion) {
+        this.id_absence = id_absence;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.type_absence = type_absence;
+        this.date_absence = date_absence;
+        this.classe = classe;
+        this.promotion = promotion;
+    }
+
 
     //Constructor
 
@@ -60,5 +74,21 @@ public class ClasseAbsence {
 
     public void setPrenom(String prenom) {
         this.prenom = prenom;
+    }
+
+    public String getClasse() {
+        return classe;
+    }
+
+    public void setClasse(String classe) {
+        this.classe = classe;
+    }
+
+    public String getPromotion() {
+        return promotion;
+    }
+
+    public void setPromotion(String promotion) {
+        this.promotion = promotion;
     }
 }

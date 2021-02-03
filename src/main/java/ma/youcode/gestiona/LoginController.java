@@ -64,6 +64,7 @@ public class LoginController {
             preferences.put("id", String.valueOf(resultSet.getInt("id")));
             System.out.println(preferences.get("id", "root"));
 
+
             conn.close();
         }else {
             loginBox.getChildren().add(new Label());

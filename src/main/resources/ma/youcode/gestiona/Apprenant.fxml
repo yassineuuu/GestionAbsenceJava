@@ -7,9 +7,9 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="648.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ma.youcode.gestiona.ApprenantController">
    <children>
-      <AnchorPane layoutX="-1.0" layoutY="-1.0" prefHeight="400.0" prefWidth="185.0" style="-fx-background-color: #28252e;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <AnchorPane layoutX="-1.0" layoutY="-1.0" prefHeight="400.0" prefWidth="185.0" style="-fx-background-color: #058DFE;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Button fx:id="searchBtn" layoutX="35.0" layoutY="240.0" mnemonicParsing="false" onAction="#getStudent" prefHeight="38.0" prefWidth="115.0" style="-fx-background-color: orange;" text="Recherche">
+            <Button fx:id="searchBtn" layoutX="35.0" layoutY="240.0" mnemonicParsing="false" onAction="#getStudent" prefHeight="38.0" prefWidth="115.0" style="-fx-background-color: #0061ca;" text="Recherche" textFill="WHITE">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></Button>
@@ -23,12 +23,12 @@
       </AnchorPane>
       <TableView fx:id="table_absence" layoutX="185.0" layoutY="-1.0" prefHeight="400.0" prefWidth="462.0">
         <columns>
-          <TableColumn fx:id="col_date" prefWidth="77.33331298828125" text="date" />
-            <TableColumn fx:id="col_nom" prefWidth="73.33331298828125" text="nom" />
-            <TableColumn fx:id="col_prenom" prefWidth="79.0" text="prenom" />
-            <TableColumn fx:id="col_classe" prefWidth="69.6666259765625" text="classe" />
-            <TableColumn fx:id="col_absence" minWidth="0.0" prefWidth="78.00003051757812" text="absence" />
-            <TableColumn fx:id="col_justifier" prefWidth="91.0" text="justifier" />
+          <TableColumn fx:id="col_date" prefWidth="77.33331298828125" style="-fx-background-color: #058DFE;" text="date" />
+            <TableColumn fx:id="col_nom" prefWidth="73.33331298828125" style="-fx-background-color: #058DFE;" text="nom" />
+            <TableColumn fx:id="col_prenom" prefWidth="79.0" style="-fx-background-color: #058DFE;" text="prenom" />
+            <TableColumn fx:id="col_classe" prefWidth="69.6666259765625" style="-fx-background-color: #058DFE;" text="classe" />
+            <TableColumn fx:id="col_absence" minWidth="0.0" prefWidth="78.00003051757812" style="-fx-background-color: #058DFE;" text="absence" />
+            <TableColumn fx:id="col_justifier" prefWidth="91.0" style="-fx-background-color: #058DFE;" text="justifier" />
         </columns>
       </TableView>
    </children>

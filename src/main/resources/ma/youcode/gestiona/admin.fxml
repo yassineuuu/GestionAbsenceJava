@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane prefHeight="525.0" prefWidth="898.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ma.youcode.gestiona.AdminController">
+<BorderPane prefHeight="600.0" prefWidth="898.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ma.youcode.gestiona.AdminController">
     <top>
         <VBox alignment="CENTER" prefHeight="64.0" prefWidth="200.0" style="-fx-background-color: #0061ca;" BorderPane.alignment="CENTER">
             <children>
@@ -88,7 +88,7 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </HBox>
-                        <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="169.0" prefHeight="56.0" prefWidth="223.0">
+                        <HBox fx:id="classesBtn" alignment="CENTER_LEFT" layoutX="10.0" layoutY="169.0" prefHeight="56.0" prefWidth="223.0">
                            <children>
                               <ImageView fitHeight="44.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -107,8 +107,11 @@
                            <padding>
                               <Insets left="30.0" />
                            </padding>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
                         </HBox>
-                        <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="169.0" prefHeight="56.0" prefWidth="177.0">
+                        <HBox fx:id="promotionBtn" alignment="CENTER_LEFT" layoutX="10.0" layoutY="169.0" prefHeight="56.0" prefWidth="177.0">
                            <children>
                               <ImageView fitHeight="44.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -127,6 +130,9 @@
                            <padding>
                               <Insets left="30.0" />
                            </padding>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
                         </HBox>
                      </children>
                   </VBox>
@@ -149,7 +155,7 @@
                               <Insets />
                            </VBox.margin>
                               </HBox>
-                              <VBox id="bbox" fx:id="buttonsVBox" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="424.0" prefWidth="672.0" stylesheets="@style.css">
+                              <VBox id="bbox" fx:id="buttonsVBox" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="672.0" stylesheets="@style.css">
                                   <children>
                                       <HBox fx:id="HBox1" alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="200.0">
                                           <VBox.margin>

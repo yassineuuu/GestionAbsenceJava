@@ -20,10 +20,9 @@ public class Main extends Application {
 
     @Override
     public void start(Stage stage) throws IOException, SQLException {
-        scene = new Scene(loadFXML("secretaire"), 920, 560);
+        scene = new Scene(loadFXML("Admin"), 920, 600);
         stage.setScene(scene);
         stage.show();
-        ConnectionFactory.getConnection();
     }
 
     static void setRoot(String fxml) throws IOException {

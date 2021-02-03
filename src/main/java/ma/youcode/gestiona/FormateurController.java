@@ -15,9 +15,14 @@ import ma.youcode.gestiona.Modeles.FormateurApprenants;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.ResourceBundle;
+import java.util.prefs.Preferences;
 
 public class FormateurController implements Initializable {
+    Preferences preferences = Preferences.userNodeForPackage(getClass());
 
     FormateurDAOImp formateurDAOImp = new FormateurDAOImp();
     FormateurApprenantDAO formateurApprenantDAO = new FormateurApprenantDAO();
@@ -71,6 +76,7 @@ public class FormateurController implements Initializable {
         lesApprenants();
         typeAbsence();
         remplireTable();
+        putDate();
     }
 
     private void formateur_name() {
@@ -79,6 +85,15 @@ public class FormateurController implements Initializable {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
+    }
+
+    public void putDate(){
+        Date aujourdhui = new Date();
+        SimpleDateFormat DateFor = new SimpleDateFormat("yyyy-MM-dd");
+        String newstring = DateFor.format(aujourdhui);
+        System.out.println(newstring);
+        //dateInput.setText(newstring);
+        dateInput.setValue(LocalDate.parse(newstring));
     }
 
     public void lesApprenants(){
@@ -128,6 +143,8 @@ public class FormateurController implements Initializable {
         String[] apprensplit = appren.split(" ", 2);
         String date = String.valueOf(dateInput.getValue());
         String typeabsence = (String) typeAbs.getValue();
+        String classe;
+        String promotion;
 
         System.out.println(apprensplit[0]+date+typeabsence);
 

@@ -7,6 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
+import java.util.prefs.Preferences;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -21,6 +22,7 @@ import ma.youcode.gestiona.Modeles.Apprenant;
 
 
 public class SecretaireController implements Initializable {
+    Preferences preferences = Preferences.userNodeForPackage(getClass());
 
 
         @FXML
@@ -43,6 +45,9 @@ public class SecretaireController implements Initializable {
 
         @FXML
         private TableColumn<Apprenant, String> col_justif;
+
+        @FXML
+        private Label txt_id;
 
         @FXML
         private Label txt_user;
@@ -74,10 +79,11 @@ public class SecretaireController implements Initializable {
 
                 return;
             }
+            txt_id.setText(col_id.getCellData(index).toString());
             txt_user.setText(col_username.getCellData(index).toString());
             txt_classe.setText(col_class.getCellData(index).toString());
             txt_promoo.setText(col_promo.getCellData(index).toString());
-            JustifAbsence.setValue(col_absence.getCellData(index).toString());
+            JustifAbsence.setValue(col_justif.getCellData(index).toString());
 
         }
 
@@ -89,7 +95,7 @@ public class SecretaireController implements Initializable {
                 String value2 = txt_user.getText();
                 String value5 = (String) JustifAbsence.getValue();
                 String sql = "update absences set nom= '"+value2+"',classe= '"+
-                            value3+"',promotion= '"+value4+"',justifier= '"+value5+"' where nom='"+txt_user.getText()+"'";
+                            value3+"',promotion= '"+value4+"',justifier= '"+value5+"' where id='"+txt_id.getText()+"' ";
                 pst= conn.prepareStatement(sql);
                 pst.execute();
                 UpdateTable();
@@ -100,6 +106,7 @@ public class SecretaireController implements Initializable {
         }
         public void UpdateTable() throws SQLException {
             SecretaireApprenantDAO secretaireDAO = new SecretaireApprenantDAO();
+            col_id.setCellValueFactory(new PropertyValueFactory<Apprenant,Integer>("id"));
             col_username.setCellValueFactory(new PropertyValueFactory<Apprenant,String>("username"));
             col_class.setCellValueFactory(new PropertyValueFactory<Apprenant,String>("classe"));
             col_promo.setCellValueFactory(new PropertyValueFactory<Apprenant,String>("promo"));

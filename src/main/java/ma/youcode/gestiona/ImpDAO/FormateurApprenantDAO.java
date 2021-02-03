@@ -34,7 +34,7 @@ public class FormateurApprenantDAO implements DAO<FormateurApprenants> {
         ResultSet result = prep.executeQuery();
         FormateurApprenants formateurApprenants;
         while (result.next()){
-            formateurApprenants = new FormateurApprenants("Username", "pwd", "type", result.getInt("id_apprenant"), result.getString("nom_apprenant"), result.getString("prenom_apprenant"), result.getInt("id_formateur"));
+            formateurApprenants = new FormateurApprenants("Username", "pwd", "Role", result.getInt("id_apprenant"), result.getString("nom_apprenant"), result.getString("prenom_apprenant"), result.getInt("id_formateur"), result.getString("classe"), result.getString("promotion"));
             listApprenant.add(formateurApprenants);
         }
         return listApprenant;
@@ -44,6 +44,32 @@ public class FormateurApprenantDAO implements DAO<FormateurApprenants> {
 
     @Override
     public void save(FormateurApprenants formateurApprenants) {
+
+
+    }
+    public void save(FormateurApprenants formateurApprenants,int id){
+
+        try {
+            Connection conn = ConnectionFactory.getConnection();
+
+            PreparedStatement preparedStatement = conn.prepareStatement("INSERT INTO `apprenants`(`id_utilisateur`, `nom_apprenant`, `prenom_apprenant`, `classe`, `promotion`,`id_formateur`) VALUES (?,?,?,?,?,?)");
+            preparedStatement.setInt(1,id);
+            preparedStatement.setString(2,formateurApprenants.getNom_apprenant());
+            preparedStatement.setString(3,formateurApprenants.getPrenom_apprenant());
+            preparedStatement.setString(4,formateurApprenants.getClasse());
+            preparedStatement.setString(5,formateurApprenants.getPromotion());
+            preparedStatement.setInt(6,formateurApprenants.getId_formateur());
+
+
+
+            int resultSet = preparedStatement.executeUpdate();
+
+            preparedStatement.close();
+            conn.close();
+
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        }
 
     }
 
