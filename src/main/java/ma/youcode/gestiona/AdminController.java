@@ -1,8 +1,15 @@
 package ma.youcode.gestiona;
 
+import javafx.animation.Animation;
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.Cursor;
 import javafx.scene.control.*;
@@ -12,17 +19,23 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import javafx.stage.Stage;
+import javafx.util.Duration;
 import ma.youcode.gestiona.ImpDAO.*;
 import ma.youcode.gestiona.Modeles.Admin;
 import ma.youcode.gestiona.Modeles.Formateur;
 import ma.youcode.gestiona.Modeles.FormateurApprenants;
 
 import java.io.IOException;
+import java.net.URL;
 import java.sql.SQLException;
+import java.util.ResourceBundle;
 import java.util.prefs.Preferences;
 
-public class AdminController {
+public class AdminController implements Initializable {
     Preferences preferences = Preferences.userNodeForPackage(getClass());
+
+    //Implimentation instanciation
 
     AdminAdminDAO utilisateurDAO;
     UtilisateurAdminDAO utilisateurAdminDAO;
@@ -39,6 +52,8 @@ public class AdminController {
     private VBox buttonsVBox;
     @FXML
     private HBox HBox1;
+    @FXML
+    private HBox behindBG;
     @FXML
     private HBox acceuilBtn;
     @FXML
@@ -64,11 +79,17 @@ public class AdminController {
     @FXML
     private VBox navApprenant;
 
+    @FXML
+    private Label greeting;
+
 
 
 
     @FXML
     private void adminCrud() throws SQLException {
+
+        behindBG.setBackground(new Background(new BackgroundFill(Color.rgb(5, 141, 254), CornerRadii.EMPTY,Insets.EMPTY)));
+        navbar.setBackground(new Background(new BackgroundFill(Color.rgb(255, 255, 255), CornerRadii.EMPTY,Insets.EMPTY)));
 
         acceuilBtn.setBackground(new Background(new BackgroundFill(Color.rgb(255, 255, 255), CornerRadii.EMPTY,Insets.EMPTY)));
         classesBtn.setBackground(new Background(new BackgroundFill(Color.rgb(255, 255, 255), CornerRadii.EMPTY,Insets.EMPTY)));
@@ -134,7 +155,7 @@ public class AdminController {
 
 
         utilisateurDAO= new AdminAdminDAO();
-        HBox1.setMinHeight(200);
+        HBox1.setMinHeight(400);
 
 
         /************************
@@ -142,35 +163,37 @@ public class AdminController {
          * ************************/
 
         TableView<Admin> utilisateursTable = new TableView<Admin>();
-//        utilisateursTable.setMinHeight(150);
+        utilisateursTable.setMinHeight(250);
+        utilisateursTable.setMaxWidth(690);
+
 
        //colomn id
         TableColumn<Admin, Integer> id = new TableColumn<>();
-        id.setMinWidth(38);
+        id.setMinWidth(40);
         id.setCellValueFactory(new PropertyValueFactory<>("id"));
         id.setText("ID");
 
         //colomn Username
         TableColumn<Admin, String> Username = new TableColumn<>();
-        Username.setMinWidth(38);
+        Username.setMinWidth(150);
         Username.setCellValueFactory(new PropertyValueFactory<>("userName"));
         Username.setText("Username");
 
         //colomn Nom
         TableColumn<Admin, String> Nom = new TableColumn<>();
-        Nom.setMinWidth(38);
+        Nom.setMinWidth(200);
         Nom.setCellValueFactory(new PropertyValueFactory<>("nom"));
         Nom.setText("Nom");
 
         //colomn Prénom
         TableColumn<Admin, String> Prenom = new TableColumn<>();
-        Prenom.setMinWidth(38);
+        Prenom.setMinWidth(150);
         Prenom.setCellValueFactory(new PropertyValueFactory<>("prenom"));
         Prenom.setText("Prénom");
 
         //colomn Role
         TableColumn<Admin, String> role = new TableColumn<>();
-        role.setMinWidth(38);
+        role.setMinWidth(150);
         role.setCellValueFactory(new PropertyValueFactory<>("role"));
         role.setText("Role");
 
@@ -272,6 +295,7 @@ public class AdminController {
 
 //        Images View 1 + configuration
         ImageView addIV = new ImageView(addImage);
+        Tooltip.install(addIV, new Tooltip("Ajouter"));
         addIV.setCursor(Cursor.HAND);
         addIV.setFitWidth(50);
         addIV.setFitHeight(50);
@@ -289,12 +313,15 @@ public class AdminController {
          * Event add
          * ************************/
         addIV.setOnMouseClicked(e3->{
+            final Stage dialog = new Stage();
+
             addUtilisateur();
 
         });
 
 //        Images View 2 + configuration
         ImageView updateIV = new ImageView(updateImage);
+        Tooltip.install(updateIV, new Tooltip("Modifier (Séléctioné Un Utilisateur Dans Le Tableau)"));
         updateIV.setCursor(Cursor.HAND);
         updateIV.setFitWidth(50);
         updateIV.setFitHeight(50);
@@ -401,10 +428,15 @@ public class AdminController {
 
 
         });
-        
+
+
+        /************************
+         * Event read
+         * ************************/
 
 //        Images View 3 + configuration
         ImageView readIV = new ImageView(readImage);
+        Tooltip.install(readIV, new Tooltip("Rechercher"));
         readIV.setCursor(Cursor.HAND);
         readIV.setFitWidth(50);
         readIV.setFitHeight(50);
@@ -418,9 +450,8 @@ public class AdminController {
             readIV.setScaleY(1);
         });
 
-        /************************
-         * Event read
-         * ************************/
+
+
         readIV.setOnMouseClicked(e3->{
 
             VBox UsernameVB = new VBox();
@@ -438,7 +469,7 @@ public class AdminController {
             }
 
 
-            Button searchButton = new Button("Search");
+            Button searchButton = new Button("Rechercher");
             UsernameVB.getChildren().add(searchButton);
             searchButton.setOnAction(e5->{
                 if (!(UsernameInput.getText().equals(""))){
@@ -455,8 +486,13 @@ public class AdminController {
 
         });
 
+
+        /************************
+         * Event delete
+         * ************************/
 //        Images View 4 + configuration
         ImageView deleteIV = new ImageView(deleteImage);
+        Tooltip.install(deleteIV, new Tooltip("Supprimer"));
         deleteIV.setCursor(Cursor.HAND);
         deleteIV.setFitWidth(50);
         deleteIV.setFitHeight(50);
@@ -469,9 +505,7 @@ public class AdminController {
             deleteIV.setScaleX(1);
             deleteIV.setScaleY(1);
         });
-        /************************
-         * Event delete
-         * ************************/
+
         deleteIV.setOnMouseClicked(e3->{
             int deleteId = utilisateursTable.getSelectionModel().getSelectedItem().getId();
             String deleteUsername = utilisateursTable.getSelectionModel().getSelectedItem().getUserName();
@@ -558,87 +592,139 @@ public class AdminController {
 
         //The add Utulisateur Action
         addbtn.setOnAction(e1->{
+            if (UsernameVB.getChildren().size()==3){
+                UsernameVB.getChildren().remove(2);
+            }
             utilisateurDAO= new AdminAdminDAO();
+            formateurDAOImp = new FormateurDAOImp();
+            utilisateurAdminDAO = new UtilisateurAdminDAO();
             Admin utilisateur = new Admin(0,UsernameInput.getText(),nomInput.getText(),prenomInput.getText(),mdpInput.getText(), (String) roleInput.getValue());
+            if (utilisateurAdminDAO.get(UsernameInput.getText()).size()==1){
+                Label msg = new Label("Utilisateur déja éxist");
+                msg.setFont(Font.font("Tw Cen MT",14));
+                msg.setTextFill(Color.RED);
+                if (UsernameVB.getChildren().size()==2){
+                    UsernameVB.getChildren().add(msg);
+                }
+            }else {
+                utilisateurDAO.add(utilisateur);
+                ObservableList<String> promoList = FXCollections.observableArrayList(
+                        "2020", "2021"
+                );
+                ObservableList<String> classeList = FXCollections.observableArrayList(
+                        "JEE", "C#","FEBE","Classe1","Classe2","Classe3","Classe4"
+                );
 
-            utilisateurDAO.add(utilisateur);
-            if (roleInput.getValue().equals("Apprenant")){
+                /***************Si le role est Apprenant*******************/
 
-                VBox promoVB = new VBox();
-                Label promoLabel = new Label("Promotion:");
-                TextField promoInput = new TextField();
-                promoVB.getChildren().add(promoLabel);
-                promoVB.getChildren().add(promoInput);
+                if (roleInput.getValue().equals("Apprenant")){
 
-                VBox classeVB = new VBox();
-                Label classeLabel = new Label("Classe:");
-                TextField classeInput = new TextField();
-                classeVB.getChildren().add(classeLabel);
-                classeVB.getChildren().add(classeInput);
 
-                VBox formateurVB = new VBox();
-                Label formaeurLabel = new Label("Formateur_Id:");
-                TextField formateurInput = new TextField();
-                formateurVB.getChildren().add(formaeurLabel);
-                formateurVB.getChildren().add(formateurInput);
-
-                Button addappr = new Button("Ajouter Apprenant");
-                addappr.setCursor(Cursor.HAND);
-
-                buttonsVBox.getChildren().remove(addbtn);
-                buttonsVBox.getChildren().remove(roleVB);
-                buttonsVBox.getChildren().addAll(promoVB, classeVB, formateurVB, new Label(), addappr);
-                utilisateurAdminDAO=new UtilisateurAdminDAO();
-                formateurApprenantDAO=new FormateurApprenantDAO();
-                addappr.setOnAction(e->{
-                    int id_user = utilisateurAdminDAO.get(utilisateur.getUserName()).get(0).getId();
-                    System.out.println(utilisateurAdminDAO.get(utilisateur.getUserName()).get(0).getId());
-                    FormateurApprenants formateurApprenants = new FormateurApprenants(nomInput.getText(), prenomInput.getText(), Integer.parseInt(formateurInput.getText()),classeInput.getText(),promoInput.getText());
-                    formateurApprenantDAO.save(formateurApprenants,id_user);
-                    buttonsVBox.getChildren().add(new Label("Apprenant Ajouté!!"));
-
-                });
+                    VBox promoVB = new VBox();
+                    Label promoLabel = new Label("Promotion:");
+                    ComboBox promoInput = new ComboBox(promoList);
+                    promoVB.getChildren().add(promoLabel);
+                    promoVB.getChildren().add(promoInput);
 
 
 
+                    VBox classeVB = new VBox();
+                    Label classeLabel = new Label("Classe:");
+                    ComboBox classeInput = new ComboBox(classeList);
+                    classeVB.getChildren().add(classeLabel);
+                    classeVB.getChildren().add(classeInput);
+
+                    VBox formateurVB = new VBox();
+                    Label formaeurLabel = new Label("Formateur_Id:");
+                    ComboBox formateurInput = new ComboBox();
+
+                    try {
+                        for (int i = 0; i< formateurDAOImp.getAll().size(); i++) {
+                            formateurInput.getItems().add(formateurDAOImp.getAll().get(i).getId_formateur());
+                        }
+                    } catch (SQLException exception) {
+                        exception.printStackTrace();
+                    }
+                    formateurVB.getChildren().add(formaeurLabel);
+                    formateurVB.getChildren().add(formateurInput);
+                    formateurInput.setOnAction((e) -> {
+                            try {
+                                if (formateurVB.getChildren().size()==2){
+                                    formateurVB.getChildren().add(new Label(formateurDAOImp.get(Integer.parseInt(String.valueOf(formateurInput.getValue()))).getNom_formateur()+ " "+formateurDAOImp.get(Integer.parseInt(String.valueOf(formateurInput.getValue()))).getPrenom_formateur()+ " ("+formateurDAOImp.get(Integer.parseInt(String.valueOf(formateurInput.getValue()))).getClasse()+")"));
+
+                                }else {
+                                    formateurVB.getChildren().remove(2);
+                                    formateurVB.getChildren().add(new Label(formateurDAOImp.get(Integer.parseInt(String.valueOf(formateurInput.getValue()))).getNom_formateur()+ " "+formateurDAOImp.get(Integer.parseInt(String.valueOf(formateurInput.getValue()))).getPrenom_formateur()+ " ("+formateurDAOImp.get(Integer.parseInt(String.valueOf(formateurInput.getValue()))).getClasse()+")"));
+                                }
+                            } catch (SQLException exception) {
+                                exception.printStackTrace();
+                           }
+                    });
+
+
+                    Button addappr = new Button("Ajouter Apprenant");
+                    addappr.setCursor(Cursor.HAND);
+
+                    buttonsVBox.getChildren().remove(addbtn);
+                    buttonsVBox.getChildren().remove(roleVB);
+                    buttonsVBox.getChildren().addAll(promoVB, classeVB, formateurVB, new Label(), addappr);
+                    utilisateurAdminDAO=new UtilisateurAdminDAO();
+                    formateurApprenantDAO=new FormateurApprenantDAO();
+                    addappr.setOnAction(e->{
+                        int id_user = utilisateurAdminDAO.get(utilisateur.getUserName()).get(0).getId();
+                        System.out.println(utilisateurAdminDAO.get(utilisateur.getUserName()).get(0).getId());
+                        FormateurApprenants formateurApprenants = new FormateurApprenants(nomInput.getText(), prenomInput.getText(), Integer.parseInt(String.valueOf(formateurInput.getValue())), String.valueOf(classeInput.getValue()),String.valueOf(promoInput.getValue()));
+                        formateurApprenantDAO.save(formateurApprenants,id_user);
+                        buttonsVBox.getChildren().add(new Label("Apprenant Ajouté!!"));
+
+                    });
+
+
+
+                }
+
+                /***************Si le role est Formateur*******************/
+
+                if (roleInput.getValue().equals("Formateur")){
+
+                    VBox promoVB = new VBox();
+                    Label promoLabel = new Label("Promotion:");
+                    ComboBox promoInput = new ComboBox(promoList);
+                    promoVB.getChildren().add(promoLabel);
+                    promoVB.getChildren().add(promoInput);
+
+                    VBox classeVB = new VBox();
+                    Label classeLabel = new Label("Classe:");
+                    ComboBox classeInput = new ComboBox(classeList);
+                    classeVB.getChildren().add(classeLabel);
+                    classeVB.getChildren().add(classeInput);
+
+
+                    Button addappr = new Button("Ajouter Formateur");
+                    addappr.setCursor(Cursor.HAND);
+
+                    buttonsVBox.getChildren().remove(addbtn);
+                    buttonsVBox.getChildren().remove(roleVB);
+                    buttonsVBox.getChildren().addAll(promoVB, classeVB, new Label(), addappr);
+                    utilisateurAdminDAO=new UtilisateurAdminDAO();
+                    formateurDAOImp=new FormateurDAOImp();
+                    addappr.setOnAction(e->{
+                        int id_user = utilisateurAdminDAO.get(utilisateur.getUserName()).get(0).getId();
+                        System.out.println(utilisateurAdminDAO.get(utilisateur.getUserName()).get(0).getId());
+                        Formateur formateur = new Formateur(nomInput.getText(), prenomInput.getText(), String.valueOf(classeInput.getValue()),String.valueOf(promoInput.getValue()));
+                        formateurDAOImp.save(formateur,id_user);
+                        buttonsVBox.getChildren().add(new Label("Formateur Ajouté!!"));
+
+                    });
+
+
+
+                }
+                buttonsVBox.getChildren().add(new Label("Utilisateur  Ajouté!!"));
             }
-            if (roleInput.getValue().equals("Formateur")){
-
-                VBox promoVB = new VBox();
-                Label promoLabel = new Label("Promotion:");
-                TextField promoInput = new TextField();
-                promoVB.getChildren().add(promoLabel);
-                promoVB.getChildren().add(promoInput);
-
-                VBox classeVB = new VBox();
-                Label classeLabel = new Label("Classe:");
-                TextField classeInput = new TextField();
-                classeVB.getChildren().add(classeLabel);
-                classeVB.getChildren().add(classeInput);
-
-
-                Button addappr = new Button("Ajouter Apprenant");
-                addappr.setCursor(Cursor.HAND);
-
-                buttonsVBox.getChildren().remove(addbtn);
-                buttonsVBox.getChildren().remove(roleVB);
-                buttonsVBox.getChildren().addAll(promoVB, classeVB, new Label(), addappr);
-                utilisateurAdminDAO=new UtilisateurAdminDAO();
-                formateurDAOImp=new FormateurDAOImp();
-                addappr.setOnAction(e->{
-                    int id_user = utilisateurAdminDAO.get(utilisateur.getUserName()).get(0).getId();
-                    System.out.println(utilisateurAdminDAO.get(utilisateur.getUserName()).get(0).getId());
-                    Formateur formateur = new Formateur(nomInput.getText(), prenomInput.getText(),classeInput.getText(),promoInput.getText());
-                    formateurDAOImp.save(formateur,id_user);
-                    buttonsVBox.getChildren().add(new Label("Formateur Ajouté!!"));
-
-                });
 
 
 
-            }
-
-            buttonsVBox.getChildren().add(new Label("Utilisateur  Ajouté!!"));
 
 
 
@@ -690,5 +776,27 @@ public class AdminController {
                 ioException.printStackTrace();
             }
         });
+    }
+
+    public void greetingAnimation(){
+        KeyValue fadeOutBegin = new KeyValue(greeting.opacityProperty(), 0.0);
+        KeyValue fadeOutEnd = new KeyValue(greeting.opacityProperty(), 1.0);
+
+        KeyValue positBegin = new KeyValue(greeting.translateYProperty(), 5);
+        KeyValue positEnd = new KeyValue(greeting.translateYProperty(), 0);
+
+        KeyFrame kfBegin = new KeyFrame(Duration.ZERO, fadeOutBegin,positBegin);
+        KeyFrame kfEnd = new KeyFrame(Duration.millis(500), fadeOutEnd,positEnd);
+
+        Timeline tl =new Timeline(kfBegin, kfEnd);
+
+        tl.setDelay(Duration.seconds(1));
+        tl.play();
+    }
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        greetingAnimation();
+
     }
 }

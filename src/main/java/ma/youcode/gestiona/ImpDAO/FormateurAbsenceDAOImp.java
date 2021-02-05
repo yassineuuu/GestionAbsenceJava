@@ -26,7 +26,7 @@ public class FormateurAbsenceDAOImp implements AbsenceDAO {
     public void insert(ClasseAbsence classeAbsence) {
         try {
             Connection conn = ConnectionFactory.getConnection();
-            PreparedStatement preparedStatement = conn.prepareStatement("INSERT INTO `absences`(`id`, `nom`, `prenom`, `absence`, `date`) VALUES (?,?,?,?,?,?,?)");
+            PreparedStatement preparedStatement = conn.prepareStatement("INSERT INTO `absences`(`id`, `nom`, `prenom`, `absence`, `date`, `classe`, `promotion`) VALUES (?,?,?,?,?,?,?)");
             preparedStatement.setInt(1,0);
             preparedStatement.setString(2, classeAbsence.getNom());
             preparedStatement.setString(3, classeAbsence.getPrenom());

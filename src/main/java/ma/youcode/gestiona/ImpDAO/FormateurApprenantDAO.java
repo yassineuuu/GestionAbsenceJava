@@ -3,20 +3,42 @@ package ma.youcode.gestiona.ImpDAO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import ma.youcode.gestiona.Connection.ConnectionFactory;
-import ma.youcode.gestiona.DAO.DAO;
+import ma.youcode.gestiona.DAO.FormateurDAO;
 import ma.youcode.gestiona.Modeles.FormateurApprenants;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Optional;
 
-public class FormateurApprenantDAO implements DAO<FormateurApprenants> {
+
+public class FormateurApprenantDAO implements FormateurDAO<FormateurApprenants> {
     @Override
-    public Optional<FormateurApprenants> get(int id) {
-        return Optional.empty();
+    public FormateurApprenants get(int id) throws SQLException {
+            Connection conn = ConnectionFactory.getConnection();
+
+            PreparedStatement prep = conn.prepareStatement("SELECT * FROM `apprenants` WHERE id_apprenant ="+id);
+            ResultSet result = prep.executeQuery();
+            FormateurApprenants formateurApprenants = new FormateurApprenants(result.getString("nom_apprenant"), result.getString("prenom_apprenant"), result.getInt("id_formateur"), result.getString("classe"), result.getString("promotion"));
+        return formateurApprenants;
+
+
     }
+    public FormateurApprenants get(String nom, String prenom) throws SQLException {
+            Connection conn = ConnectionFactory.getConnection();
+
+            PreparedStatement prep = conn.prepareStatement("SELECT * FROM `apprenants` WHERE nom_apprenant ='"+nom+"' && prenom_apprenant= '"+prenom+"'");
+            ResultSet result = prep.executeQuery();
+            if (result.next()){
+                FormateurApprenants formateurApprenants = new FormateurApprenants(result.getString("nom_apprenant"), result.getString("prenom_apprenant"), result.getInt("id_formateur"), result.getString("classe"), result.getString("promotion"));
+                return formateurApprenants;
+            }else {
+                System.out.println("Oups");
+                return null;
+            }
+
+    }
+
 
     @Override
     public ObservableList<FormateurApprenants> getAll() {

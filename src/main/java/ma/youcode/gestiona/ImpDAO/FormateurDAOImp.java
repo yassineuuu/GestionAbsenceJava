@@ -1,10 +1,12 @@
 package ma.youcode.gestiona.ImpDAO;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import ma.youcode.gestiona.Connection.ConnectionFactory;
 import ma.youcode.gestiona.DAO.FormateurDAO;
 import ma.youcode.gestiona.Modeles.Formateur;
 import ma.youcode.gestiona.Modeles.FormateurApprenants;
+import ma.youcode.gestiona.Modeles.Utilisateur;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -25,8 +27,21 @@ public class FormateurDAOImp implements FormateurDAO<Formateur> {
     }
 
     @Override
-    public ObservableList<Formateur> getAll() {
-        return null;
+    public ObservableList<Formateur> getAll() throws SQLException {
+        ObservableList<Formateur> formateurList = FXCollections.observableArrayList();
+
+        Connection conn = ConnectionFactory.getConnection();
+        PreparedStatement prep = conn.prepareStatement("SELECT * FROM `formateurs`");
+        ResultSet result = prep.executeQuery();
+        Formateur formateur = null;
+        while (result.next()){
+            formateur = new Formateur(result.getInt("id_formateur"),result.getString("nom_formateur"),result.getString("prenom_formateur"),result.getString("classe"),result.getString("promotion") );
+            formateurList.add(formateur);
+        }
+        result.close();
+        prep.close();
+        conn.close();
+        return formateurList;
     }
 
     @Override

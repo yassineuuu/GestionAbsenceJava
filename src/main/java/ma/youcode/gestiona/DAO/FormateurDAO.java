@@ -6,7 +6,7 @@ import java.util.Optional;
 
 public interface FormateurDAO<T> {
     T get(int id) throws SQLException;
-    List<T> getAll();
+    List<T> getAll() throws SQLException;
     void save(T t);
 
     void update(T t, String[] params);

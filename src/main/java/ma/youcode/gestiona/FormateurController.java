@@ -60,14 +60,7 @@ public class FormateurController implements Initializable {
     @FXML
     private TableColumn colunmnPrenom;
 
-    @FXML
-    private void switchToApprenant() throws IOException {
-        Main.setRoot("Apprenant");
-    }
-    @FXML
-    private void login() throws IOException {
-        Main.setRoot("login");
-    }
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -111,7 +104,7 @@ public class FormateurController implements Initializable {
     public void typeAbsence(){
 
         ObservableList typeAbsence = FXCollections.observableArrayList(
-                "Retard","Absence"
+                "Demi journée","Journée"
         );
 
         typeAbs.setItems(typeAbsence);
@@ -136,19 +129,18 @@ public class FormateurController implements Initializable {
     }
 
     @FXML
-    public void AjouterAbsences(){
+    public void AjouterAbsences() throws SQLException {
 
         FormateurAbsenceDAOImp formateurAbsenceDAOImp = new FormateurAbsenceDAOImp();
         String appren = (String) listApprenant.getValue();
         String[] apprensplit = appren.split(" ", 2);
         String date = String.valueOf(dateInput.getValue());
         String typeabsence = (String) typeAbs.getValue();
-        String classe;
-        String promotion;
+        String classe = formateurApprenantDAO.get(apprensplit[1], apprensplit[0]).getClasse();
+        String promotion = formateurApprenantDAO.get(apprensplit[1], apprensplit[0]).getPromotion();
 
-        System.out.println(apprensplit[0]+date+typeabsence);
 
-        ClasseAbsence classeAbsence = new ClasseAbsence(apprensplit[1], apprensplit[0],typeabsence,date);
+        ClasseAbsence classeAbsence = new ClasseAbsence(apprensplit[1], apprensplit[0], classe, promotion,typeabsence,date);
         formateurAbsenceDAOImp.insert(classeAbsence);
 
 

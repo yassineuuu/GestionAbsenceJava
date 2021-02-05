@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane prefHeight="600.0" prefWidth="898.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ma.youcode.gestiona.AdminController">
+<BorderPane prefHeight="800.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ma.youcode.gestiona.AdminController">
     <top>
         <VBox alignment="CENTER" prefHeight="64.0" prefWidth="200.0" style="-fx-background-color: #0061ca;" BorderPane.alignment="CENTER">
             <children>
@@ -21,7 +21,7 @@
     <center>
         <VBox alignment="TOP_RIGHT" prefHeight="452.0" prefWidth="898.0" style="-fx-background-color: ffffff;" BorderPane.alignment="CENTER">
             <children>
-            <HBox id="adminCenterBox" prefHeight="691.0" prefWidth="898.0">
+            <HBox id="adminCenterBox" fx:id="behindBG" alignment="CENTER" prefHeight="691.0" prefWidth="1100.0" stylesheets="@style.css">
                <children>
                   <VBox prefHeight="490.0" prefWidth="239.0" style="-fx-background-color: ffffff;">
                      <children>
@@ -136,16 +136,16 @@
                         </HBox>
                      </children>
                   </VBox>
-                      <VBox fx:id="adminCenterBox" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="493.0" prefWidth="680.0" style="-fx-background-color: ffffff;">
+                      <VBox fx:id="adminCenterBox" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minWidth="860.0" prefHeight="493.0" prefWidth="680.0" style="-fx-background-color: ffffff;">
                           <children>
-                              <HBox fx:id="navbar" alignment="CENTER" prefHeight="50.0" prefWidth="670.0" style="-fx-background-color: #FFFFFF;">
+                              <HBox fx:id="navbar" alignment="CENTER" minWidth="860.0" prefHeight="50.0" prefWidth="760.0" style="-fx-background-color: Transparent;">
                                   <children>
                               <VBox fx:id="usersVBox" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" />
                                       <VBox fx:id="navAdmin" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" />
                                       <VBox fx:id="navSecretaire" alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0" />
                                       <VBox fx:id="navFormateur" alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0" />
                                       <VBox fx:id="navApprenant" alignment="CENTER" layoutX="110.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0" />
-                              <Button fx:id="logout" mnemonicParsing="false" onAction="#logout" style="-fx-background-color: ee1551;" text="Logout" textFill="WHITE" translateX="50.0" translateY="2.0">
+                              <Button fx:id="logout" mnemonicParsing="false" onAction="#logout" style="-fx-background-color: ee1551;" text="Logout" textFill="WHITE" translateX="100.0" translateY="2.0">
                                  <font>
                                     <Font name="Tw Cen MT" size="16.0" />
                                  </font>
@@ -155,14 +155,14 @@
                               <Insets />
                            </VBox.margin>
                               </HBox>
-                              <VBox id="bbox" fx:id="buttonsVBox" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="672.0" stylesheets="@style.css">
+                              <VBox id="bbox" fx:id="buttonsVBox" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0" prefWidth="850.0" stylesheets="@style.css">
                                   <children>
-                                      <HBox fx:id="HBox1" alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="200.0">
+                                      <HBox fx:id="HBox1" alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="200.0" stylesheets="@style.css">
                                           <VBox.margin>
                                               <Insets bottom="30.0" top="50.0" />
                                           </VBox.margin>
                                  <children>
-                                    <Label text="Welcome Administrator">
+                                    <Label id="greeting" fx:id="greeting" opacity="0.0" stylesheets="@style.css" text="Welcome Administrator" textFill="WHITE">
                                        <font>
                                           <Font name="Tw Cen MT" size="42.0" />
                                        </font>
@@ -171,12 +171,14 @@
                                       </HBox>
                               <HBox fx:id="HBox2" alignment="CENTER" layoutX="10.0" layoutY="117.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="200.0" />
                                   </children>
+                           <VBox.margin>
+                              <Insets top="8.0" />
+                           </VBox.margin>
                         </VBox>
                           </children>
                       </VBox>
                </children>
             </HBox>
-            <VBox prefHeight="200.0" prefWidth="100.0" />
             </children></VBox>
     </center>
 </BorderPane>

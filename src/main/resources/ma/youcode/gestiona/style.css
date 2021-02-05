@@ -1,5 +1,6 @@
-#bbox{
-        -fx-background-image:url('../../../img/Welcome.jpg');
+#adminCenterBox{
+        -fx-background-image:url('../../../img/s1.jpg');
         -fx-background-size: cover;
 
 }
+

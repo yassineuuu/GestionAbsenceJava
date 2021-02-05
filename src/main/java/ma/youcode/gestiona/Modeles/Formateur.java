@@ -35,6 +35,14 @@ public class Formateur extends Utilisateur{
         this.promotion = promotion;
     }
 
+    public Formateur(int id_formateur, String nom_formateur, String prenom_formateur, String classe, String promotion) {
+        this.id_formateur = id_formateur;
+        this.nom_formateur = nom_formateur;
+        this.prenom_formateur = prenom_formateur;
+        this.classe = classe;
+        this.promotion = promotion;
+    }
+
     public int getId_formateur() {
         return id_formateur;
     }

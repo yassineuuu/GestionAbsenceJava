@@ -20,6 +20,14 @@ public class ClasseAbsence {
         this.classe = classe;
         this.promotion = promotion;
     }
+    public ClasseAbsence(String nom, String prenom, String classe, String promotion, String type_absence, String date_absence) {
+        this.nom = nom;
+        this.prenom = prenom;
+        this.type_absence = type_absence;
+        this.date_absence = date_absence;
+        this.classe = classe;
+        this.promotion = promotion;
+    }
 
 
     //Constructor
