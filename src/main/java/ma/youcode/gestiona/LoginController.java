@@ -30,6 +30,8 @@ public class LoginController {
     @FXML
     private VBox loginBox;
 
+    Preferences preferences = Preferences.userRoot();
+
 
     @FXML
     private void login() throws IOException, SQLException {
@@ -43,7 +45,9 @@ public class LoginController {
 
         ResultSet resultSet = preparedStatement.executeQuery();
 
+
         if (resultSet.next()){
+            preferences.putInt("id", resultSet.getInt("id"));
             switch (resultSet.getString("Role")){
                 case "Admin":
                     Main.setRoot("admin");
@@ -60,9 +64,8 @@ public class LoginController {
                 default:
                     loginBox.getChildren().add(new Label("Role n'exist pas"));
             }
-            Preferences preferences = Preferences.userNodeForPackage(getClass());
-            preferences.put("id", String.valueOf(resultSet.getInt("id")));
-            System.out.println(preferences.get("id", "root"));
+
+
 
 
             conn.close();

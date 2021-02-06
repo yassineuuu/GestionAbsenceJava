@@ -25,6 +25,16 @@ public class FormateurDAOImp implements FormateurDAO<Formateur> {
         }
         return formateur;
     }
+    public Formateur getId_utilisateurs(int id_utilisateurs) throws SQLException {
+        Connection conn = ConnectionFactory.getConnection();
+        PreparedStatement prep = conn.prepareStatement("SELECT * FROM `formateurs` WHERE id_utilisateurs ="+id_utilisateurs+"");
+        ResultSet result = prep.executeQuery();
+        Formateur formateur = null;
+        if (result.next()){
+            formateur = new Formateur("username","pwd","type",result.getInt("id_formateur"),result.getString("nom_formateur"),result.getString("prenom_formateur"),result.getString("classe"),result.getString("promotion") );
+        }
+        return formateur;
+    }
 
     @Override
     public ObservableList<Formateur> getAll() throws SQLException {

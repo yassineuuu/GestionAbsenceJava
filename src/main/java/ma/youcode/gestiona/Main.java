@@ -20,7 +20,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage stage) throws IOException, SQLException {
-        scene = new Scene(loadFXML("formateur"), 1100, 720);
+        scene = new Scene(loadFXML("login"), 1100, 720);
         stage.setScene(scene);
         stage.show();
         stage.setResizable(false);

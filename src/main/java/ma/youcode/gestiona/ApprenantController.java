@@ -18,7 +18,7 @@ import java.util.ResourceBundle;
 
 public class ApprenantController implements Initializable{
 
-    Preferences pref = Preferences.userNodeForPackage(getClass());
+    Preferences pref = Preferences.userRoot();
 
     @FXML private TableView<ApprenantApprenant> table_absence;
     @FXML private TableColumn<ApprenantApprenant,String> col_nom;
@@ -49,7 +49,7 @@ public class ApprenantController implements Initializable{
 
 
             ApprenantDAOImp apprenantDAO =new ApprenantDAOImp();
-            table_absence.setItems(apprenantDAO.getByName(String.valueOf(comb.getValue()), Integer.parseInt(pref.get("id", "root"))));
+            table_absence.setItems(apprenantDAO.getByName(String.valueOf(comb.getValue()), pref.getInt("id", 1)));
         });
 
     }
