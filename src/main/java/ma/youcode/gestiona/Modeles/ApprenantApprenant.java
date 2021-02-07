@@ -5,14 +5,24 @@ import java.sql.Date;
 public class ApprenantApprenant extends Utilisateur {
 
 
-//    Constructeur
-
     private Date date;
     private int idApprenant;
     private String classe;
     private String promotion;
     private String absence;
     private String justifier;
+    private int id_formateur;
+
+//    Constructeur
+
+
+    public ApprenantApprenant(int idApprenant, int id, String nom, String prenom, int id_formateur, String classe, String promotion) {
+        super(id, nom, prenom);
+        this.idApprenant = idApprenant;
+        this.classe = classe;
+        this.promotion = promotion;
+        this.id_formateur = id_formateur;
+    }
 
     public ApprenantApprenant(int id, Date date, int idapprenant, String nom, String prenom, String classe, String promotion, String absence, String justifier) {
         super(id, nom, prenom);
@@ -72,8 +82,11 @@ public class ApprenantApprenant extends Utilisateur {
         this.justifier = justifier;
     }
 
+    public int getId_formateur() {
+        return id_formateur;
+    }
 
-
-
-
+    public void setId_formateur(int id_formateur) {
+        this.id_formateur = id_formateur;
+    }
 }

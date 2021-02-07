@@ -6,10 +6,13 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import ma.youcode.gestiona.ImpDAO.ApprenantDAO;
 import ma.youcode.gestiona.ImpDAO.ApprenantDAOImp;
+import ma.youcode.gestiona.ImpDAO.FormateurDAOImp;
 import ma.youcode.gestiona.Modeles.ApprenantApprenant;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.prefs.Preferences;
 
 
@@ -19,6 +22,10 @@ import java.util.ResourceBundle;
 public class ApprenantController implements Initializable{
 
     Preferences pref = Preferences.userRoot();
+
+    ApprenantDAOImp apprenantDAO =new ApprenantDAOImp();
+    ApprenantDAO apprenant = new ApprenantDAO();
+
 
     @FXML private TableView<ApprenantApprenant> table_absence;
     @FXML private TableColumn<ApprenantApprenant,String> col_nom;
@@ -37,8 +44,7 @@ public class ApprenantController implements Initializable{
     @FXML
     public void getStudent(){
 
-        System.out.println(pref.get("id", "root"));
-        searchBtn.setOnAction(e->{
+
             col_nom.setCellValueFactory(new PropertyValueFactory<ApprenantApprenant,String>("nom"));
             col_prenom.setCellValueFactory(new PropertyValueFactory<ApprenantApprenant,String>("prenom"));
             col_classe.setCellValueFactory(new PropertyValueFactory<ApprenantApprenant,String>("classe"));
@@ -47,10 +53,13 @@ public class ApprenantController implements Initializable{
             col_date.setCellValueFactory(new PropertyValueFactory<ApprenantApprenant,String>("date"));
 
 
+            try {
+//                System.out.println(apprenant.getAll(pref.getInt("id",1)).get(0).getIdApprenant());
+                table_absence.setItems(apprenantDAO.getByName(String.valueOf(comb.getValue()), apprenant.getAll(pref.getInt("id",1)).get(0).getIdApprenant()));
+            } catch (SQLException exception) {
+                exception.printStackTrace();
+            }
 
-            ApprenantDAOImp apprenantDAO =new ApprenantDAOImp();
-            table_absence.setItems(apprenantDAO.getByName(String.valueOf(comb.getValue()), pref.getInt("id", 1)));
-        });
 
     }
     public void fillCombobox(){
