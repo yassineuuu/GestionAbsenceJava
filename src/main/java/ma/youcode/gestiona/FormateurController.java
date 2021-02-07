@@ -69,6 +69,9 @@ public class FormateurController implements Initializable {
     @FXML
     private TableColumn colunmnPrenom;
 
+    @FXML
+    private TableColumn column_id;
+
 
 
     @Override
@@ -124,6 +127,7 @@ public class FormateurController implements Initializable {
 
     public void remplireTable() {
 
+        column_id.setCellValueFactory(new PropertyValueFactory<FormateurApprenants, Integer>("id_apprenant"));
         colunmnNom.setCellValueFactory(new PropertyValueFactory<FormateurApprenants, String>("nom_apprenant"));
         colunmnPrenom.setCellValueFactory(new PropertyValueFactory<FormateurApprenants, String>("prenom_apprenant"));
 
@@ -156,15 +160,19 @@ public class FormateurController implements Initializable {
 
 
         FormateurAbsenceDAOImp formateurAbsenceDAOImp = new FormateurAbsenceDAOImp();
+        int index = table.getSelectionModel().getSelectedIndex();
+
         String appren = (String) listApprenant.getValue();
         String[] apprensplit = appren.split(" ", 2);
         String date = String.valueOf(dateInput.getValue());
         String typeabsence = (String) typeAbs.getValue();
         String classe = formateurApprenantDAO.get(apprensplit[1], apprensplit[0]).getClasse();
         String promotion = formateurApprenantDAO.get(apprensplit[1], apprensplit[0]).getPromotion();
+        int id_user = (int) column_id.getCellData(index);
+        int id_formateur = formateurDAOImp.getId_utilisateurs(preferences.getInt("id",1)).getId_formateur();
 
 
-        ClasseAbsence classeAbsence = new ClasseAbsence(apprensplit[1], apprensplit[0], classe, promotion,typeabsence,date);
+        ClasseAbsence classeAbsence = new ClasseAbsence(id_user, apprensplit[1], apprensplit[0], classe, promotion, typeabsence, date, id_formateur);
         formateurAbsenceDAOImp.insert(classeAbsence);
 
 

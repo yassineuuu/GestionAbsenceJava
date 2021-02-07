@@ -13,14 +13,14 @@ public class ApprenantDAOImp implements ApprenantDAO<ApprenantApprenant> {
 
     @Override
     public ObservableList<ApprenantApprenant> getByName(String nom) {return null;}
-    public ObservableList<ApprenantApprenant> getByName(String nom, int id) {
+    public ObservableList<ApprenantApprenant> getByName(String mois, int id) {
 
         ObservableList<ApprenantApprenant> etudiantList = FXCollections.observableArrayList();
         //Connexion
         try{
             Connection cnx = ConnectionFactory.getConnection();
             PreparedStatement prepared;
-            String query = "SELECT * FROM `absences` WHERE idApprenant = "+ id +" && EXTRACT(MONTH FROM date)= '"+nom+"'";
+            String query = "SELECT * FROM `absences` WHERE idApprenant = "+ id +" && EXTRACT(MONTH FROM date)= '"+mois+"'";
 
             Statement st;
             ResultSet rs;

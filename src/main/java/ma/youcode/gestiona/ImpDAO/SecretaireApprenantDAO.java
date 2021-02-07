@@ -5,6 +5,7 @@ import javafx.collections.ObservableList;
 import ma.youcode.gestiona.Connection.ConnectionFactory;
 import ma.youcode.gestiona.DAO.DAO;
 import ma.youcode.gestiona.Modeles.Apprenant;
+import ma.youcode.gestiona.Modeles.ClasseAbsence;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -31,6 +32,39 @@ public class SecretaireApprenantDAO implements DAO<Apprenant> {
 
             while (rs.next()){
                 list.add(new Apprenant("", "", "", Integer.parseInt(rs.getString("id")), rs.getString("nom"), rs.getString("classe"), rs.getString("promotion"), rs.getString("absence"), rs.getString("justifier")));
+            }
+        } catch (Exception e) {
+        }
+        return list;
+    }
+
+    public ObservableList<ClasseAbsence> getAllCA(){
+
+
+        ObservableList<ClasseAbsence> list = FXCollections.observableArrayList();
+        try {
+            Connection conn = ConnectionFactory.getConnection();
+            PreparedStatement ps = conn.prepareStatement("select * from absences");
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()){
+                list.add(new ClasseAbsence(rs.getInt("id"), rs.getString("prenom"), rs.getString("nom"), rs.getString("classe"), rs.getString("promotion"), rs.getString("absence"), rs.getString("date"), rs.getString("justifier")));
+            }
+        } catch (Exception e) {
+        }
+        return list;
+    }
+    public ObservableList<ClasseAbsence> getAll(String date){
+
+
+        ObservableList<ClasseAbsence> list = FXCollections.observableArrayList();
+        try {
+            Connection conn = ConnectionFactory.getConnection();
+            PreparedStatement ps = conn.prepareStatement("select * from absences WHERE date = '"+date+"'");
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()){
+                list.add(new ClasseAbsence(rs.getInt("id"), rs.getString("prenom"), rs.getString("nom"), rs.getString("classe"), rs.getString("promotion"), rs.getString("absence"), rs.getString("date"), rs.getString("justifier")));
             }
         } catch (Exception e) {
         }

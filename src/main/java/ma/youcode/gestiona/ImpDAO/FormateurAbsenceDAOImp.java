@@ -49,7 +49,7 @@ public class FormateurAbsenceDAOImp implements AbsenceDAO {
     public void insert(ClasseAbsence classeAbsence) {
         try {
             Connection conn = ConnectionFactory.getConnection();
-            PreparedStatement preparedStatement = conn.prepareStatement("INSERT INTO `absences`(`id`, `nom`, `prenom`, `absence`, `date`, `classe`, `promotion`) VALUES (?,?,?,?,?,?,?)");
+            PreparedStatement preparedStatement = conn.prepareStatement("INSERT INTO `absences`(`id`, `nom`, `prenom`, `absence`, `date`, `classe`, `promotion`, `idapprenant`, `id_formateur`) VALUES (?,?,?,?,?,?,?,?,?)");
             preparedStatement.setInt(1,0);
             preparedStatement.setString(2, classeAbsence.getNom());
             preparedStatement.setString(3, classeAbsence.getPrenom());
@@ -57,6 +57,8 @@ public class FormateurAbsenceDAOImp implements AbsenceDAO {
             preparedStatement.setString(5, (classeAbsence.getDate_absence()));
             preparedStatement.setString(6, (classeAbsence.getClasse()));
             preparedStatement.setString(7, (classeAbsence.getPromotion()));
+            preparedStatement.setInt(8, (classeAbsence.getId_user()));
+            preparedStatement.setInt(9, (classeAbsence.getId_formateur()));
             int resultSet = preparedStatement.executeUpdate();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -70,6 +72,12 @@ public class FormateurAbsenceDAOImp implements AbsenceDAO {
 
     @Override
     public void delete() {
+
+    }
+    public void delete(String justifier) throws SQLException {
+        Connection conn = ConnectionFactory.getConnection();
+        PreparedStatement preparedStatement = conn.prepareStatement("DELETE FROM `absences` WHERE justifier ='"+justifier+"'");
+        int resultSet = preparedStatement.executeUpdate();
 
     }
 }

@@ -56,7 +56,7 @@ public class FormateurApprenantDAO implements FormateurDAO<FormateurApprenants> 
         ResultSet result = prep.executeQuery();
         FormateurApprenants formateurApprenants;
         while (result.next()){
-            formateurApprenants = new FormateurApprenants("Username", "pwd", "Role", result.getInt("id_apprenant"), result.getString("nom_apprenant"), result.getString("prenom_apprenant"), result.getInt("id_formateur"), result.getString("classe"), result.getString("promotion"));
+            formateurApprenants = new FormateurApprenants(result.getInt("id_apprenant"), result.getString("nom_apprenant"), result.getString("prenom_apprenant"), result.getInt("id_formateur"), result.getString("classe"), result.getString("promotion"));
             listApprenant.add(formateurApprenants);
         }
         return listApprenant;
