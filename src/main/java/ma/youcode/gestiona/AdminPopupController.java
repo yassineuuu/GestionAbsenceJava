@@ -186,7 +186,7 @@ public class AdminPopupController implements Initializable {
 
                     /***************Si le role est Formateur*******************/
 
-                    if (roleInput.getValue().equals("Formateur")) {
+                    else if (roleInput.getValue().equals("Formateur")) {
 
                         VBox promoVB = new VBox();
                         Label promoLabel = new Label("Promotion:");
@@ -226,6 +226,13 @@ public class AdminPopupController implements Initializable {
                         });
 
 
+                    }else {
+                        buttonsVBox.getScene().getWindow().hide();
+                        try {
+                            Main.setRoot("admin");
+                        } catch (IOException ioException) {
+                            ioException.printStackTrace();
+                        }
                     }
                     buttonsVBox.getChildren().add(new Label("Utilisateur  Ajouté!!"));
                 }

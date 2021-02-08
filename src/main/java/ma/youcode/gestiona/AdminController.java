@@ -1,9 +1,6 @@
 package ma.youcode.gestiona;
 
-import javafx.animation.Animation;
-import javafx.animation.KeyFrame;
-import javafx.animation.KeyValue;
-import javafx.animation.Timeline;
+import javafx.animation.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -23,6 +20,7 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Modality;
+import javafx.stage.Popup;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import ma.youcode.gestiona.ImpDAO.*;
@@ -50,6 +48,8 @@ public class AdminController implements Initializable {
     FormateurAdminDAO formateurDAO;
 
     VBox modifVBox;
+
+    Popup popup = new Popup();
 
 
 
@@ -356,89 +356,106 @@ public class AdminController implements Initializable {
          * Event Update
          * ************************/
         updateIV.setOnMouseClicked(e3->{
-            //Table values
-            int updateId = utilisateursTable.getSelectionModel().getSelectedItem().getId();
-            String updateUsername = utilisateursTable.getSelectionModel().getSelectedItem().getUserName();
-            String updateNom = utilisateursTable.getSelectionModel().getSelectedItem().getNom();
-            String updatePrenom = utilisateursTable.getSelectionModel().getSelectedItem().getPrenom();
-            String updatePwd = utilisateursTable.getSelectionModel().getSelectedItem().getPwd();
-            String updateRole = utilisateursTable.getSelectionModel().getSelectedItem().getRole();
+            if (!(utilisateursTable.getSelectionModel().getSelectedIndex() <= -1)) {
+                //Table values
+                int updateId = utilisateursTable.getSelectionModel().getSelectedItem().getId();
+                String updateUsername = utilisateursTable.getSelectionModel().getSelectedItem().getUserName();
+                String updateNom = utilisateursTable.getSelectionModel().getSelectedItem().getNom();
+                String updatePrenom = utilisateursTable.getSelectionModel().getSelectedItem().getPrenom();
+                String updatePwd = utilisateursTable.getSelectionModel().getSelectedItem().getPwd();
+                String updateRole = utilisateursTable.getSelectionModel().getSelectedItem().getRole();
 
-            Admin utilisateur = new Admin(updateId,updateUsername,updateNom,updatePrenom,updatePwd,updateRole);
+                Admin utilisateur = new Admin(updateId, updateUsername, updateNom, updatePrenom, updatePwd, updateRole);
 
-            //Instanciate field
-            VBox UsernameVB = new VBox();
-            Label UsernameLabel = new Label("Username:");
-            TextField UsernameInput = new TextField();
-            UsernameVB.getChildren().add(UsernameLabel);
-            UsernameVB.getChildren().add(UsernameInput);
-            UsernameInput.setText(updateUsername);
+                //Instanciate field
+                VBox UsernameVB = new VBox();
+                Label UsernameLabel = new Label("Username:");
+                TextField UsernameInput = new TextField();
+                UsernameVB.getChildren().add(UsernameLabel);
+                UsernameVB.getChildren().add(UsernameInput);
+                UsernameInput.setText(updateUsername);
 
-            VBox nomVB = new VBox();
-            Label nomLabel = new Label("Nom:");
-            TextField nomInput = new TextField();
-            nomVB.getChildren().add(nomLabel);
-            nomVB.getChildren().add(nomInput);
-            nomInput.setText(updateNom);
+                VBox nomVB = new VBox();
+                Label nomLabel = new Label("Nom:");
+                TextField nomInput = new TextField();
+                nomVB.getChildren().add(nomLabel);
+                nomVB.getChildren().add(nomInput);
+                nomInput.setText(updateNom);
 
-            VBox prenomVB = new VBox();
-            Label prenomLabel = new Label("Prénom:");
-            TextField prenomInput = new TextField();
-            prenomVB.getChildren().add(prenomLabel);
-            prenomVB.getChildren().add(prenomInput);
-            prenomInput.setText(updatePrenom);
+                VBox prenomVB = new VBox();
+                Label prenomLabel = new Label("Prénom:");
+                TextField prenomInput = new TextField();
+                prenomVB.getChildren().add(prenomLabel);
+                prenomVB.getChildren().add(prenomInput);
+                prenomInput.setText(updatePrenom);
 
-            VBox mdpVB = new VBox();
-            Label mdpLabel = new Label("Mot de Passe:");
-            TextField mdpInput = new TextField();
-            mdpVB.getChildren().add(mdpLabel);
-            mdpVB.getChildren().add(mdpInput);
-            mdpInput.setText(updatePwd);
+                VBox mdpVB = new VBox();
+                Label mdpLabel = new Label("Mot de Passe:");
+                TextField mdpInput = new TextField();
+                mdpVB.getChildren().add(mdpLabel);
+                mdpVB.getChildren().add(mdpInput);
+                mdpInput.setText(updatePwd);
 
 
-            VBox roleVB = new VBox();
-            Label roleLabel = new Label("Rôle:");
-            ObservableList<String> options =
-                    FXCollections.observableArrayList(
-                            "Admin", "Secretaire", "Formateur", "Apprenant"
-                    );
-            ComboBox roleInput = new ComboBox(options);
-            roleVB.getChildren().add(roleLabel);
-            roleVB.getChildren().add(roleInput);
-            roleInput.setValue(updateRole);
-            roleVB.setPadding(new Insets(0,0,20,0));
+                VBox roleVB = new VBox();
+                Label roleLabel = new Label("Rôle:");
+                ObservableList<String> options =
+                        FXCollections.observableArrayList(
+                                "Admin", "Secretaire", "Formateur", "Apprenant"
+                        );
+                ComboBox roleInput = new ComboBox(options);
+                roleVB.getChildren().add(roleLabel);
+                roleVB.getChildren().add(roleInput);
+                roleInput.setValue(updateRole);
+                roleVB.setPadding(new Insets(0, 0, 20, 0));
 
-            Button modifbtn = new Button("Modifier");
-            modifbtn.setCursor(Cursor.HAND);
+                Button modifbtn = new Button("Modifier");
+                modifbtn.setCursor(Cursor.HAND);
 
-            modifbtn.setOnAction(e4->{
+                modifbtn.setOnAction(e4 -> {
 
-                try {
-                    utilisateurDAO.update(utilisateur, new String[]{UsernameInput.getText(), nomInput.getText(), prenomInput.getText(), mdpInput.getText(), (String) roleInput.getValue()});
-                    adminCrud();
-                } catch (SQLException exception) {
-                    exception.printStackTrace();
+                    try {
+                        utilisateurDAO.update(utilisateur, new String[]{UsernameInput.getText(), nomInput.getText(), prenomInput.getText(), mdpInput.getText(), (String) roleInput.getValue()});
+                        adminCrud();
+                    } catch (SQLException exception) {
+                        exception.printStackTrace();
+                    }
+                });
+
+
+                modifVBox = new VBox();
+
+                modifVBox.getChildren().addAll(UsernameVB, nomVB, prenomVB, mdpVB, roleVB, modifbtn);
+                modifVBox.setPadding(new Insets(0, 0, 0, 30));
+                HBox1.getChildren().clear();
+
+                if (HBox1.getChildren().isEmpty()) {
+                    try {
+                        adminCrud();
+                    } catch (SQLException exception) {
+                        exception.printStackTrace();
+                    }
+                    HBox1.getChildren().add(modifVBox);
+                } else {
+                    System.out.println("cannot");
                 }
-            });
 
 
-            modifVBox = new VBox();
-
-            modifVBox.getChildren().addAll(UsernameVB,nomVB,prenomVB,mdpVB,roleVB,modifbtn);
-            modifVBox.setPadding(new Insets(0,0,0,30));
-            HBox1.getChildren().clear();
-
-            if (HBox1.getChildren().isEmpty()){
-                try {
-                    adminCrud();
-                } catch (SQLException exception) {
-                    exception.printStackTrace();
-                }
-                HBox1.getChildren().add(modifVBox);
             }else {
-                System.out.println("cannot");
-            }
+                Label msg = new Label("Séléctioné un utilisateur");
+                msg.setStyle(" -fx-background-color: white;");
 
+                popup.getContent().add(msg);
+                popup.setY(760);
+                popup.setX(1000);
+                PauseTransition delay = new PauseTransition(Duration.seconds(2));
+                delay.setOnFinished(e -> popup.hide());
+
+                popup.show(updateIV.getScene().getWindow());
+
+                delay.play();
+
+            }
 
 
 
@@ -523,21 +540,40 @@ public class AdminController implements Initializable {
         });
 
         deleteIV.setOnMouseClicked(e3->{
-            int deleteId = utilisateursTable.getSelectionModel().getSelectedItem().getId();
-            String deleteUsername = utilisateursTable.getSelectionModel().getSelectedItem().getUserName();
-            String deleteNom = utilisateursTable.getSelectionModel().getSelectedItem().getNom();
-            String deletePrenom = utilisateursTable.getSelectionModel().getSelectedItem().getPrenom();
-            String deletePwd = utilisateursTable.getSelectionModel().getSelectedItem().getPwd();
-            String deleteRole = utilisateursTable.getSelectionModel().getSelectedItem().getRole();
+            if (!(utilisateursTable.getSelectionModel().getSelectedIndex() <= -1)){
+                int deleteId = utilisateursTable.getSelectionModel().getSelectedItem().getId();
+                String deleteUsername = utilisateursTable.getSelectionModel().getSelectedItem().getUserName();
+                String deleteNom = utilisateursTable.getSelectionModel().getSelectedItem().getNom();
+                String deletePrenom = utilisateursTable.getSelectionModel().getSelectedItem().getPrenom();
+                String deletePwd = utilisateursTable.getSelectionModel().getSelectedItem().getPwd();
+                String deleteRole = utilisateursTable.getSelectionModel().getSelectedItem().getRole();
 
 
-            Admin utilisateur = new Admin(deleteId, deleteUsername, deleteNom, deletePrenom, deletePwd,deleteRole);
-            try {
-                utilisateurDAO.delete(utilisateur);
-                adminCrud();
-            } catch (SQLException exception) {
-                exception.printStackTrace();
+                Admin utilisateur = new Admin(deleteId, deleteUsername, deleteNom, deletePrenom, deletePwd,deleteRole);
+                try {
+                    utilisateurDAO.delete(utilisateur);
+                    adminCrud();
+                } catch (SQLException exception) {
+                    exception.printStackTrace();
+                }
+            }else {
+
+                Label msg = new Label("Séléctioné un utilisateur");
+                msg.setStyle(" -fx-background-color: white;");
+
+                popup.getContent().add(msg);
+                popup.setY(760);
+                popup.setX(1000);
+                PauseTransition delay = new PauseTransition(Duration.seconds(2));
+                delay.setOnFinished(e -> popup.hide());
+
+                popup.show(deleteIV.getScene().getWindow());
+
+                delay.play();
+
+                System.out.println("Select smtn");
             }
+
 
         });
         
@@ -611,11 +647,11 @@ public class AdminController implements Initializable {
         KeyValue positEnd = new KeyValue(greeting.translateYProperty(), 0);
 
         KeyFrame kfBegin = new KeyFrame(Duration.ZERO, fadeOutBegin,positBegin);
-        KeyFrame kfEnd = new KeyFrame(Duration.millis(500), fadeOutEnd,positEnd);
+        KeyFrame kfEnd = new KeyFrame(Duration.millis(400), fadeOutEnd,positEnd);
 
         Timeline tl =new Timeline(kfBegin, kfEnd);
 
-        tl.setDelay(Duration.seconds(1));
+        tl.setDelay(Duration.seconds(0.5));
         tl.play();
     }
     @Override
