@@ -9,11 +9,16 @@
    <children>
       <AnchorPane layoutX="-1.0" layoutY="-1.0" prefHeight="400.0" prefWidth="185.0" style="-fx-background-color: #058DFE;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Button fx:id="searchBtn" layoutX="35.0" layoutY="122.0" mnemonicParsing="false" onAction="#getStudent" prefHeight="38.0" prefWidth="115.0" style="-fx-background-color: #0061ca;" text="Recherche" textFill="WHITE">
+            <Button fx:id="searchBtn" layoutX="35.0" layoutY="322.0" mnemonicParsing="false" onAction="#getStudent" prefHeight="38.0" prefWidth="115.0" style="-fx-background-color: #0061ca;" text="Recherche" textFill="WHITE">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></Button>
-            <ComboBox fx:id="comb" layoutX="18.0" layoutY="51.0" prefWidth="150.0" />
+            <ComboBox fx:id="comb" layoutX="18.0" layoutY="251.0" prefWidth="150.0" />
+            <Label layoutX="21.0" layoutY="213.0" text="Mois:" textFill="WHITE">
+               <font>
+                  <Font name="Tw Cen MT" size="22.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
       <TableView fx:id="table_absence" layoutX="356.0" layoutY="102.0" prefHeight="400.0" prefWidth="462.0">

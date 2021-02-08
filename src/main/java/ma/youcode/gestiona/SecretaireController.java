@@ -156,7 +156,7 @@ public class SecretaireController implements Initializable {
     public void JustifAbsence(){
 
         ObservableList typeAbsence = FXCollections.observableArrayList(
-                "justifier","non justifier"
+                "justifié","non justifié"
         );
 
         JustifAbsence.setItems(typeAbsence);
