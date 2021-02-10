@@ -6,7 +6,7 @@
 
 <AnchorPane prefHeight="200.0" prefWidth="450.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ma.youcode.gestiona.SecPopupControler">
    <children>
-      <Label layoutX="46.0" layoutY="40.0" prefHeight="60.0" prefWidth="342.0" text="Cette action supprimera les absences justifiées. est ce que vous êtes d'accord avec cela??" textAlignment="CENTER" textOverrun="CLIP" wrapText="true">
+      <Label layoutX="46.0" layoutY="40.0" prefHeight="60.0" prefWidth="342.0" text="Cette action est pour actualisé le Tableau. est ce que vous êtes d'accord avec cela??" textAlignment="CENTER" textOverrun="CLIP" wrapText="true">
          <font>
             <Font size="16.0" />
          </font>

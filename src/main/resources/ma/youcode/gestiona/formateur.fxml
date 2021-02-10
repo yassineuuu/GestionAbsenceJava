@@ -25,7 +25,7 @@
          </padding></AnchorPane>
    </top>
    <left>
-      <AnchorPane prefHeight="384.0" prefWidth="312.0" BorderPane.alignment="CENTER">
+      <AnchorPane fx:id="ajtabsence" prefHeight="384.0" prefWidth="312.0" BorderPane.alignment="CENTER">
          <children>
             <Label layoutX="14.0" layoutY="86.0" prefHeight="19.0" prefWidth="92.0" text="Nom Etudiant :" textFill="WHITE">
                <font>
@@ -44,9 +44,9 @@
             </Label>
             <ComboBox fx:id="listApprenant" layoutX="119.0" layoutY="82.0" prefHeight="25.0" prefWidth="173.0" />
             <DatePicker fx:id="dateInput" layoutX="117.0" layoutY="142.0" />
-            <ComboBox fx:id="typeAbs" layoutX="118.0" layoutY="195.0" prefHeight="25.0" prefWidth="174.0" />
-            <Button fx:id="buttonAjouter" layoutX="147.0" layoutY="267.0" mnemonicParsing="false" onAction="#AjouterAbsences" text="Ajouter" />
-            <Button fx:id="buttonModifier" layoutX="221.0" layoutY="267.0" mnemonicParsing="false" text="Modifier" />
+            <ComboBox fx:id="typeAbs" layoutX="118.0" layoutY="195.0" prefHeight="25.0" prefWidth="174.0" promptText="Demi journée" />
+            <Button fx:id="buttonAjouter" layoutX="144.0" layoutY="254.0" mnemonicParsing="false" onAction="#AjouterAbsences" prefHeight="25.0" prefWidth="120.0" text="Ajouter Absent" />
+            <Button fx:id="buttonModifier" layoutX="221.0" layoutY="267.0" mnemonicParsing="false" text="Modifier" visible="false" />
          </children>
          <BorderPane.margin>
             <Insets left="50.0" />
@@ -59,16 +59,16 @@
             <Insets right="50.0" />
          </BorderPane.margin>
          <children>
-            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="32.0" prefWidth="129.0" text="Liste Absence :" textAlignment="CENTER" textFill="WHITE">
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="32.0" prefWidth="186.0" text="Mes Apprenant:" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font name="Tw Cen MT" size="22.0" />
                </font>
             </Label>
-            <TableView fx:id="table" maxWidth="360.0" prefHeight="422.0" prefWidth="386.0" style="-fx-border-color: #1f0bd7;">
+            <TableView fx:id="table" maxWidth="420.0" prefHeight="422.0" prefWidth="386.0" style="-fx-border-color: #1f0bd7;">
               <columns>
                   <TableColumn fx:id="column_id" prefWidth="75.0" text="id" visible="false" />
-                <TableColumn fx:id="colunmnNom" prefWidth="193.0" text="Nom " />
-                <TableColumn fx:id="colunmnPrenom" prefWidth="175.0" text="Prenom" />
+                <TableColumn fx:id="colunmnNom" prefWidth="210.0" text="Nom " />
+                <TableColumn fx:id="colunmnPrenom" prefWidth="210.0" text="Prénom" />
               </columns>
             </TableView>
          </children>

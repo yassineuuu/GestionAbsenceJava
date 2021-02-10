@@ -24,22 +24,22 @@
       </AnchorPane>
       <TableView fx:id="table_absence" layoutX="233.0" layoutY="113.0" prefHeight="519.0" prefWidth="812.0">
         <columns>
-          <TableColumn fx:id="col_date" prefWidth="120.0" text="date" />
-            <TableColumn fx:id="col_nom" prefWidth="150.0" text="nom" />
-            <TableColumn fx:id="col_prenom" prefWidth="150.0" text="prenom" />
-            <TableColumn fx:id="col_classe" prefWidth="100.0" text="classe" />
-            <TableColumn fx:id="col_absence" minWidth="0.0" prefWidth="150.0" text="absence" />
-            <TableColumn fx:id="col_justifier" prefWidth="150.0" text="justifier" />
+          <TableColumn fx:id="col_date" prefWidth="120.0" text="Date" />
+            <TableColumn fx:id="col_nom" prefWidth="150.0" text="Nom" visible="false" />
+            <TableColumn fx:id="col_prenom" prefWidth="150.0" text="Prenom" visible="false" />
+            <TableColumn fx:id="col_classe" prefWidth="100.0" text="Classe" />
+            <TableColumn fx:id="col_absence" minWidth="0.0" prefWidth="150.0" text="Absence" />
+            <TableColumn fx:id="col_justifier" prefWidth="150.0" text="Justifier" />
         </columns>
       </TableView>
-      <Button layoutX="1014.0" layoutY="20.0" mnemonicParsing="false" onAction="#logout" style="-fx-background-color: ee1551;" text="logout" textFill="WHITE">
+      <Button layoutX="983.0" layoutY="21.0" mnemonicParsing="false" onAction="#logout" style="-fx-background-color: ee1551;" text="logout" textFill="WHITE">
          <font>
             <Font name="Tw Cen MT" size="16.0" />
          </font>
       </Button>
-      <ImageView fitHeight="53.0" fitWidth="150.0" layoutX="195.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="53.0" fitWidth="150.0" layoutX="233.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../img/logo.png" />
+            <Image url="@../../../img/logoNoir.png" />
          </image>
       </ImageView>
    </children>

@@ -19,35 +19,41 @@
          </children></VBox>
    </top>
    <center>
-      <VBox alignment="CENTER" prefHeight="300.0" prefWidth="600.0" style="-fx-background-color: #058dfe;" BorderPane.alignment="CENTER">
+      <VBox alignment="CENTER" prefHeight="300.0" prefWidth="1100.0" style="-fx-background-color: #058dfe;" BorderPane.alignment="CENTER">
          <children>
-            <VBox fx:id="loginBox" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="200.0" prefWidth="202.0">
+            <VBox fx:id="loginBox" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="200.0" prefWidth="350.0">
                <children>
-                  <VBox prefHeight="109.0" prefWidth="965.0">
+                  <VBox alignment="CENTER" prefHeight="185.0" prefWidth="450.0">
                      <children>
                         <Label text="Username" textFill="WHITE">
                            <font>
-                              <Font name="Tw Cen MT" size="16.0" />
+                              <Font name="Tw Cen MT" size="24.0" />
                            </font>
                         </Label>
                         <TextField fx:id="userNameInput" prefHeight="25.0" prefWidth="257.0">
                            <VBox.margin>
                               <Insets bottom="10.0" />
                            </VBox.margin>
+                           <font>
+                              <Font size="20.0" />
+                           </font>
                         </TextField>
                         <Label text="Password" textFill="WHITE">
                            <font>
-                              <Font name="Tw Cen MT" size="16.0" />
+                              <Font name="Tw Cen MT" size="24.0" />
                            </font>
                         </Label>
                         <PasswordField fx:id="mdpInput">
                            <VBox.margin>
                               <Insets bottom="20.0" />
                            </VBox.margin>
+                           <font>
+                              <Font size="20.0" />
+                           </font>
                         </PasswordField>
                         <Button fx:id="loginButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#login" prefHeight="32.0" prefWidth="213.0" style="-fx-background-color: #69bdff;" text="Login" textAlignment="CENTER" textFill="WHITE">
                            <font>
-                              <Font name="Tw Cen MT Bold" size="16.0" />
+                              <Font name="Tw Cen MT Bold" size="24.0" />
                            </font>
                            <cursor>
                               <Cursor fx:constant="HAND" />
@@ -63,5 +69,3 @@
          </children></VBox>
    </center>
 </BorderPane>
-
-

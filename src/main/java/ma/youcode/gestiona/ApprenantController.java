@@ -44,7 +44,6 @@ public class ApprenantController implements Initializable{
     @FXML
     public void getStudent(){
 
-
             col_nom.setCellValueFactory(new PropertyValueFactory<ApprenantApprenant,String>("nom"));
             col_prenom.setCellValueFactory(new PropertyValueFactory<ApprenantApprenant,String>("prenom"));
             col_classe.setCellValueFactory(new PropertyValueFactory<ApprenantApprenant,String>("classe"));
@@ -71,6 +70,17 @@ public class ApprenantController implements Initializable{
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         fillCombobox();
+        try {
+            col_nom.setCellValueFactory(new PropertyValueFactory<ApprenantApprenant,String>("nom"));
+            col_prenom.setCellValueFactory(new PropertyValueFactory<ApprenantApprenant,String>("prenom"));
+            col_classe.setCellValueFactory(new PropertyValueFactory<ApprenantApprenant,String>("classe"));
+            col_absence.setCellValueFactory(new PropertyValueFactory<ApprenantApprenant,String>("absence"));
+            col_justifier.setCellValueFactory(new PropertyValueFactory<ApprenantApprenant,String>("justifier"));
+            col_date.setCellValueFactory(new PropertyValueFactory<ApprenantApprenant,String>("date"));
+            table_absence.setItems(apprenantDAO.getByName(apprenant.getAll(pref.getInt("id",1)).get(0).getIdApprenant()));
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        }
     }
 
 

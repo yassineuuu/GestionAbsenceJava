@@ -1,5 +1,6 @@
 package ma.youcode.gestiona;
 
+import javafx.animation.PauseTransition;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -10,6 +11,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import javafx.stage.Popup;
+import javafx.util.Duration;
 import ma.youcode.gestiona.ImpDAO.FormateurAbsenceDAOImp;
 import ma.youcode.gestiona.ImpDAO.FormateurApprenantDAO;
 import ma.youcode.gestiona.ImpDAO.FormateurDAOImp;
@@ -35,6 +38,9 @@ public class FormateurController implements Initializable {
 
     @FXML
     private Label formateur_name;
+
+    @FXML
+    private AnchorPane ajtabsence;
 
     @FXML
     private VBox tableVBox;
@@ -174,6 +180,28 @@ public class FormateurController implements Initializable {
 
         ClasseAbsence classeAbsence = new ClasseAbsence(id_user, apprensplit[1], apprensplit[0], classe, promotion, typeabsence, date, id_formateur);
         formateurAbsenceDAOImp.insert(classeAbsence);
+
+        Popup popup = new Popup();
+        Label msg = new Label("Absence Ajouté!");
+        msg.setStyle(" -fx-background-color: white;");
+
+        popup.getContent().add(msg);
+        popup.setY(700);
+        popup.setX(100);
+        PauseTransition delay = new PauseTransition(Duration.seconds(2));
+        delay.setOnFinished(e -> popup.hide());
+
+        popup.show(formateur_name.getScene().getWindow());
+
+        delay.play();
+
+        try {
+            Main.setRoot("formateur");
+            ajtabsence.getChildren().add(msg);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
 
     }

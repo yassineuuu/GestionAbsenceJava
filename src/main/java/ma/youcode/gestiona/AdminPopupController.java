@@ -5,10 +5,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Cursor;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -63,7 +60,7 @@ public class AdminPopupController implements Initializable {
 
         VBox mdpVB = new VBox();
         Label mdpLabel = new Label("Mot de Passe:");
-        TextField mdpInput = new TextField();
+        PasswordField mdpInput = new PasswordField();
         mdpVB.getChildren().add(mdpLabel);
         mdpVB.getChildren().add(mdpInput);
 
